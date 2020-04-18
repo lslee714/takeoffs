@@ -16,3 +16,8 @@ frontend/build
 
 # auto generated cache files
 __pycache__
+
+#environment file
+env.sh
+
+__pycache__
