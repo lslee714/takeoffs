@@ -17,7 +17,6 @@ mccabe==0.6.1
 more-itertools==6.0.0
 numpy==1.16.2
 pep8==1.7.1
-pkg-resources==0.0.0
 pluggy==0.9.0
 py==1.8.0
 pylint==2.4.4
