@@ -4,7 +4,7 @@
 
 ### Written in React with Typescript, using create-react-app with Typescript
 
-To serve locally run:
+To serve locally, run:
 
 ```
 //Production mode
@@ -14,7 +14,5 @@ start-frontend.sh
 //In the frontend/ directory
 npm start
 ```
-
-For development mode: npm start
 
 Visit: localhost in your browser
