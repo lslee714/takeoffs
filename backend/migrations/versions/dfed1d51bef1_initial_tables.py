@@ -37,6 +37,7 @@ def upgrade():
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('description', sa.String(), nullable=True),
     sa.Column('location', sa.String(), nullable=True),
+    sa.Column('ts_created', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     **ADDITIONAL_ARGS
     )

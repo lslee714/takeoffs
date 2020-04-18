@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, DateTime, func
 
 from models.base import Base
 
@@ -13,3 +13,4 @@ class Project(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     location = Column(String)
+    ts_created = Column(DateTime, nullable=False, default=func.now())
