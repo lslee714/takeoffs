@@ -1,17 +1,22 @@
 import { combineReducers } from 'redux';
 
-import { appReducer, IAppState } from './AppReducer';
+import {
+  IConstructionProjectsState,
+  projectsReducer,
+} from './ConstructionProjects';
 
 export interface IRootState {
-  app: IAppState;
+  projects: IConstructionProjectsState;
 }
 
 export const initialState: IRootState = {
-  app: {
+  projects: {
     isLoading: false,
+    byId: {},
+    sorted: [],
   },
 };
 
 export default combineReducers({
-  app: appReducer,
+  projects: projectsReducer,
 });

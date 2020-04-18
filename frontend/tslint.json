@@ -3,6 +3,7 @@
   "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
   "jsRules": {},
   "rules": {
+    "jsx-boolean-value": false,
     "jsx-no-lambda": false,
     "ordered-imports": false,
     "arrow-return-shorthand": true,

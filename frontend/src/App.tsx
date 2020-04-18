@@ -1,12 +1,10 @@
 import React, { useEffect, Dispatch } from 'react';
-import Col from 'react-bootstrap/Col';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
-import Row from 'react-bootstrap/Row';
 import { useDispatch } from 'react-redux';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import ConstructionProjects from './components/construction-projects/ConstructionProjects';
-import AppActions from './store/actions/app';
+import ConstructionProjectsActions from './store/actions/construction-projects';
 
 import './App.css';
 
@@ -14,26 +12,22 @@ const App: React.FC = (props) => {
   const dispatch: Dispatch<any> = useDispatch();
 
   useEffect(() => {
-    dispatch(AppActions.appInit());
+    dispatch(ConstructionProjectsActions.getProjects());
   });
 
   return (
-    <div>
+    <BrowserRouter>
       <Nav className="navbar">
         <Nav.Item>
-          <Nav.Link className="logo" href="/">
+          <Link className="logo" to="/">
             Takeoffs
-          </Nav.Link>
+          </Link>
         </Nav.Item>
       </Nav>
-      <Container>
-        <Row>
-          <Col>
-            <ConstructionProjects />
-          </Col>
-        </Row>
-      </Container>
-    </div>
+      <Switch>
+        <Route exact path="/" component={ConstructionProjects} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 
