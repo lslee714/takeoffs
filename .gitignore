@@ -6,11 +6,9 @@ frontend/node_modules
 # frontend testing
 frontend/coverage
 
-#Dev tools
-frontend/.prettierrc
-
 #frontend Build output
 frontend/build
+
 
 #Backend stuff
 
@@ -19,5 +17,9 @@ __pycache__
 
 #environment file
 env.sh
+backend/venv
 
-__pycache__
+
+#Dev tools
+frontend/.prettierrc
+.vscode
