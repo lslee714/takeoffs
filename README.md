@@ -1,6 +1,6 @@
 # Takeoffs Demo App
 
-### Project Scope
+## Project Scope
 
 #### Project Epic:
 
@@ -16,12 +16,12 @@ Create an application allowing the user to:
 - React w/ Typescript UI
 - Flask backend
 
-#### Project retro:
+#### Project retro notes:
 
 - I chose a mono-repo approach, this buys me a couple of things: a) API compatibility; and b) easy developer experience for a small one-man team.
-- I did separate out the UI and backend into their own separate applications, i.e. I did not a the monolith approach. While I actually saw an argument _**for**_ a monolith (it's a simple application with limited purpose), I wanted to keep flexibility and scalability in mind. In addition, I admittedly do not have a ton of outside of work experience in setting up microservices, so it was a great learning opportunity. We'll see how this ends up!
-
-###
+- I did separate out the UI and backend into their own separate applications, i.e. I did not create a monolith. While I actually saw an argument _**for**_ a monolith (it's a simple application with limited purpose), I wanted to keep flexibility and scalability in mind. In addition, I admittedly do not have a ton of outside of work experience in setting up microservices, so it is a great learning opportunity. We'll see how this ends up!
+- I used NGINX to serve the frontend; it's a widely accepted static content server in the community.
+- I used gunicorn to serve the flask backend; it's also widely accepted as a Python WSGI HTTP server and I'm familiar with it.
 
 ## Frontend
 
@@ -29,13 +29,17 @@ Create an application allowing the user to:
 
 To serve locally, inside root project directory, run
 
-```
-//Production mode
-start-frontend.sh
+#### For dev mode
 
-//Dev mode
+```
 //In the frontend/ directory
 npm start
+```
+
+#### For Production build
+
+```
+start-frontend.sh
 ```
 
 ## Backend
@@ -43,7 +47,6 @@ npm start
 (Assumed to be have python3.6+ and associated pip available in current working path)
 
 <a href='https://docs.python.org/3.6/library/venv.html'>Here's how you can create a virtual environment in python</a>
-<br>
 
 ### Setting up Application for development
 
@@ -70,7 +73,7 @@ $ python run.py
 
 \*optional
 
-#### For production, in docker, from root project directory
+#### For production, from root project directory
 
 ```
 ./start-backend.sh
