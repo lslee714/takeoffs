@@ -4,7 +4,9 @@ import { IConstructionProject } from '../models/ConstructionProject';
 
 export class ConstructionProjectsService {
   getProjects(): Observable<IConstructionProject[]> {
-    return ajax.getJSON<IConstructionProject[]>('http://localhost:8000');
+    return ajax.getJSON<IConstructionProject[]>(
+      'http://localhost:8000/construction-projects/'
+    );
   }
 }
 

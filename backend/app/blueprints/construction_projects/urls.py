@@ -14,8 +14,8 @@ def register(blueprint):
     def get_projects():
         """Returns the existing projects, sorted by TS created"""
         projects = session.query(Project).order_by(Project.ts_created.desc()).all()
-        projectJsons = map(lambda p: ProjectJson(p)(), projects)
-        return jsonify({'projects': projectJsons})
+        projectJsons = list(map(lambda p: ProjectJson(p)(), projects))
+        return jsonify(projectJsons)
 
     @blueprint.route('/', methods=['POST'])
     @cross_origin()

@@ -33,6 +33,7 @@ export const projectsReducer = (
         isLoading: false,
       };
       // Assumes sort from payload
+      console.log('PROJECTS', projects);
       projects.forEach((project: IConstructionProject) => {
         newState.byId[project.id] = project;
         newState.sorted.push(project.id);
