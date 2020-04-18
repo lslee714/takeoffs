@@ -7,13 +7,13 @@ if __name__ == '__main__':
 
     argParser = argparse.ArgumentParser(description='Run the Takeoffs API backend')
 
-    argParser.add_argument('--config', dest='config', nargs='?', choices=('debug', 'live'), default=None,
+    argParser.add_argument('--config', dest='config', nargs='?', choices=('debug', 'live'), default='debug',
                            help='The type of configuration to run the service in')
 
     argParser.add_argument('--host', dest='host', nargs='?', default='localhost',
                            help='The host IP to run the service in')
 
-    argParser.add_argument('--port', dest='port', nargs='?', default='',
+    argParser.add_argument('--port', dest='port', nargs='?', default='8000',
                            help='The port to run the service in')
 
 

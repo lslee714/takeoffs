@@ -11,7 +11,6 @@ def create_app(config):
     
     app = Flask(__name__)
     app.config.from_object(config)
-
     engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], connect_args={'check_same_thread': False})
     Session = sessionmaker(bind=engine)
     session = Session()
