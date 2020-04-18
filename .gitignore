@@ -12,6 +12,9 @@ frontend/build
 
 #Backend stuff
 
+#sqlite db auto generated
+test.db
+
 # auto generated cache files
 __pycache__
 
