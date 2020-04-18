@@ -1,30 +1,20 @@
-# auto generated cache files
-__pycache__
+#Frontend stuiff
 
-# dependencies
-node_modules
-.pnp
-.pnp.js
+# frontend dependencies
+frontend/node_modules
 
-# testing
-/coverage
-
-# production
-/build
+# frontend testing
+frontend/coverage
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
 
 #Dev tools
-.prettierrc
+frontend/.prettierrc
 
 #frontend Build output
 frontend/build
+
+#Backend stuff
+
+# auto generated cache files
+__pycache__
