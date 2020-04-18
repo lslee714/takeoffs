@@ -4,11 +4,17 @@
 
 ### Written in React with Typescript, using create-react-app with Typescript
 
-To serve locally:
+To serve locally run:
 
 ```
-docker build -f frontend/Dockerfile -t whatever-tag-you-want .
-docker run -p 80:80 whatever-tag-you-want
+//Production mode
+start-frontend.sh
+
+//Dev mode
+//In the frontend/ directory
+npm start
 ```
+
+For development mode: npm start
 
 Visit: localhost in your browser
