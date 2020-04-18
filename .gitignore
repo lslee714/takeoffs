@@ -25,3 +25,6 @@ yarn-error.log*
 
 #Dev tools
 .prettierrc
+
+#frontend Build output
+frontend/build
