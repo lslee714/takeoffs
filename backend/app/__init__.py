@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
@@ -15,6 +16,7 @@ def create_app(config):
     Session = sessionmaker(bind=engine)
     session = Session()
     register_blueprints(app)
+    CORS(app)
     return app
 
 def register_blueprints(app):
