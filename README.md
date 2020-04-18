@@ -4,7 +4,7 @@
 
 ### Written in React with Typescript, using create-react-app with Typescript
 
-To serve locally, run:
+To serve locally, inside root project directory, run
 
 ```
 //Production mode
@@ -20,13 +20,12 @@ Visit: localhost in your browser
 ## Backend
 
 (Assumed to be have python3.6+ and associated pip available in current working path)
-<br>
-<br>
+
 <a href='https://docs.python.org/3.6/library/venv.html'>Here's how you can create a virtual environment in python</a>
 <br>
-<br>
 
-<h3>Setting up Application</h3>
+### Setting up Application for development
+
 <ol>
     <li>$ ./setup.sh</li>
     <li>Create and adjust an environment file (i.e. env.sh) in root directory 
@@ -37,7 +36,10 @@ Visit: localhost in your browser
     <li>$ alembic upgrade heads</li>
 </ol>
 
-<h3>Running the application</h3>
+### Running the application
+
+#### For dev mode
+
 <ol>
     <li>$ source env.sh (If environment not loaded) 
     <li> <strong>*</strong>  $ python run_app_tests.py 
@@ -45,3 +47,10 @@ Visit: localhost in your browser
     </li>
     <li>$ python run.py</li>
 </ol>
+
+#### For production, in docker, from root project directory
+
+```
+docker build -f backend/Dockerfile -t whatever-tag-you-want
+docker run -p {PORT, e.g. 8000}:5000 whatever-tag-you-want}
+```
