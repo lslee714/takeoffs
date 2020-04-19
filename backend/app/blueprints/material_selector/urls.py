@@ -11,6 +11,15 @@ def register(blueprint):
     @cross_origin()
     def get_categories():
         """Root for the root blueprint"""
-        categories = CategoryJson.get_categories()
-        # Trusting sort from API so far
-        return jsonify(categories)        
+        queryParams = request.args
+        if queryParams:
+            args = {
+                'page': queryParams.get('page'),
+                'itemsPerPage': queryParams.get('items-per-page')
+            }
+        else:
+            args = {}
+        categories = CategoryJson.get_categories(**args)
+        total = MaterialController().get_total()
+        # Trusting sort from API s o far
+        return jsonify({'categories': categories, 'total': total})        

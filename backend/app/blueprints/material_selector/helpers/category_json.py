@@ -30,7 +30,7 @@ class CategoryJson:
         return self.categoryResponse[nameKey]
 
     @classmethod
-    def get_categories(cls, page=1, itemsPerPage=30):
+    def get_categories(cls, page=1, itemsPerPage=10):
         """Call controller, return response prewrapped with the class"""
         controller = MaterialController()
         response = controller.get_categories(page, itemsPerPage)
