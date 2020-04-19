@@ -3,8 +3,8 @@ import DataTable from 'react-data-table-component';
 import { useSelector, useDispatch } from 'react-redux';
 
 import DataTableHelper from './DataTableHelper';
-import MaterialSelectorActions from '../../../store/actions/material-selector';
 import { IMaterialGroup } from '../../../models/MaterialSelector';
+import MaterialSelectorActions from '../../../store/actions/material-selector';
 import { IRootState } from '../../../store/reducers';
 
 const SelectorTable = () => {
@@ -39,10 +39,10 @@ const SelectorTable = () => {
       pagination
       paginationTotalRows={totalRows}
       paginationServer
-      onChangeRowsPerPage={(perPage, page) => {
-        setPerPage(perPage);
+      onChangeRowsPerPage={(newPerPage, page) => {
+        setPerPage(newPerPage);
         return dispatch(
-          MaterialSelectorActions.getCategories({ page, perPage })
+          MaterialSelectorActions.getCategories({ page, perPage: newPerPage })
         );
       }}
       onChangePage={(page, total) => {
