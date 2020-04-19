@@ -22,7 +22,7 @@ export const getCategoriesEpic: Epic<
     switchMap((action: MaterialSelectorActions.IGetCategoriesAction) =>
       MaterialSelectorService.getCategories().pipe(
         map((res: IMaterialGroup[]) => {
-          console.log('RES!!');
+          console.log('RES!!', res);
           return MaterialSelectorActions.loadCategories(res);
         }),
         catchError((err) => {
