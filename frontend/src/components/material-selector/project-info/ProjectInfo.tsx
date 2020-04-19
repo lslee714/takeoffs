@@ -7,7 +7,7 @@ import AdditionalProjectInfo from '../additional-project-info/AdditionalProjectI
 import { IConstructionProject } from '../../../models/ConstructionProject';
 import ProjectTabs from '../project-tabs/ProjectTabs';
 
-import './ProjectInfo.css';
+import './ProjectInfo.scss';
 
 const ProjectInfo: React.FC<{ project: IConstructionProject }> = (props: {
   project: IConstructionProject;

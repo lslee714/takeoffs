@@ -7,7 +7,7 @@ import ConstructionProjects from '../construction-projects/ConstructionProjects'
 import ConstructionProjectsActions from '../../store/actions/construction-projects';
 import MaterialSelector from '../material-selector/MaterialSelector';
 
-import './App.css';
+import './App.scss';
 
 const App: React.FC = (props) => {
   const dispatch: Dispatch<any> = useDispatch();

@@ -5,16 +5,16 @@
   box-shadow: 0 4px 2px -2px gray;
   border-radius: 0px !important;
   padding: 0 60px 0 60px;
-}
 
-.project-name {
-  padding-top: 30px;
-  display: flex;
-}
+  .project-name {
+    padding-top: 30px;
+    display: flex;
+  }
 
-.prev-arrow {
-  display: flex;
-  align-items: center;
-  margin-right: 10px;
-  color: gray;
+  .prev-arrow {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    color: gray;
+  }
 }

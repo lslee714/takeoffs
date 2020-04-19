@@ -4,7 +4,7 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { TiDeleteOutline } from 'react-icons/ti';
 
-import './ExistingProjects.css';
+import './ExistingProjects.scss';
 
 import { IConstructionProject } from '../../../models/ConstructionProject';
 import { IRootState } from '../../../store/reducers';

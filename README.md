@@ -25,12 +25,14 @@ Create an application allowing the user to:
 - I added a redux-observable layer for my UI state management; it's a pretty heavy, all purpose Redux tool for React that allows me to use rxjs with Observables, which is where Javascript is heading more and more towards!
 - I don't follow snake_case for my local variables in Python; I prefer camelCase for it, so those are intentional
 - I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which makes the app a little more rigid.
+- Added sass as css preprocessor, regular css was getting too clunky
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial
 - No frontend form validation
 - Testing lacking
+- Little scss methodology, mostly setting values empirically
 
 ## Frontend
 

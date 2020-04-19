@@ -3,7 +3,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { FaShoppingCart } from 'react-icons/fa';
 
-import './ProjectTabs.css';
+import './ProjectTabs.scss';
 
 const ProjectTabs = () => {
   return (

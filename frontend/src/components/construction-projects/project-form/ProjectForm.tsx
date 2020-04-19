@@ -7,7 +7,7 @@ import Form from 'react-bootstrap/Form';
 import { IConstructionProject } from '../../../models/ConstructionProject';
 import ConstructionProjectsActions from '../../../store/actions/construction-projects';
 
-import './ProjectForm.css';
+import './ProjectForm.scss';
 
 function ProjectForm() {
   const dispatch: Dispatch<any> = useDispatch();
