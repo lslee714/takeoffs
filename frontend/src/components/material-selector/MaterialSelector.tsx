@@ -16,9 +16,7 @@ function MaterialSelector() {
   return (
     <div>
       <ProjectInfo project={project} />
-      <Container>
-        <hr />
-      </Container>
+      <Container></Container>
     </div>
   );
 }

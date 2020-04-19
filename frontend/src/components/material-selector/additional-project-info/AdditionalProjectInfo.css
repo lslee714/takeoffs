@@ -1,0 +1,6 @@
+.info {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 40px;
+  width: 50%;
+}
