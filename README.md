@@ -32,10 +32,15 @@ Create an application allowing the user to:
 
 - Very happy pathed..
 - Probably should separate the one backend app blueprints into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
-- Using sqlite, hosting a full microserviced application in the cloud w/ a database also is nt trivial
+- Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
 - No frontend form validation
 - Testing lacking
 - Little scss methodology, mostly setting values empirically
+
+#### Things that I learned:
+
+- Setting up app as pure "producution-ready-ish" microservices, separating client/backend
+- Using function components with hooks in React with typescript, still a lot to learn there, exciting!
 
 ## Frontend
 
