@@ -14,6 +14,8 @@ import sys
 
 #make app available to import from
 sys.path[0:0] = [os.path.join(os.path.dirname(__file__), '..')]
+
+sys.path[0:0] = [os.path.join(os.path.dirname(__file__), '../..')]
 from configs import Config
 
 #Import ops to register custom operations

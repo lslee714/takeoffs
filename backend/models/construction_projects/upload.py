@@ -2,7 +2,8 @@ from sqlalchemy import Column, Integer, String, DateTime, func, ForeignKey
 from sqlalchemy.orm import relationship
 
 from models.base import Base
-from models.construction_projects.project import Project
+
+from .project import Project
 
 
 class Upload(Base):

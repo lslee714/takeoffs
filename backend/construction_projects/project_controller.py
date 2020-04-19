@@ -9,4 +9,6 @@ class ProjectController:
         return self.session.query(Project).order_by(Project.ts_created.desc()).all()
 
     def delete_project(self, projectId):
-        self.session.query(Project).filter(Project.id==projectId).delete()        
+        self.session.query(Project).filter(Project.id==projectId).delete()
+
+        
