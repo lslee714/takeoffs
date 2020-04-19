@@ -30,6 +30,8 @@ Create an application allowing the user to:
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
+- "Caveman" orchestration (my own script rather than something like docker compose)
+- I want to set up kubernetes with it, ambitiously!
 - Very happy pathed..
 - Probably should separate the one backend app blueprints into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
@@ -42,6 +44,13 @@ Create an application allowing the user to:
 
 - Setting up app as pure "producution-ready-ish" microservices, separating client/backend
 - Using function components with hooks in React with typescript, still a lot to learn there, exciting!
+
+##TL;DR
+To run locally:
+
+```
+ ./run.sh
+```
 
 ## Frontend
 
