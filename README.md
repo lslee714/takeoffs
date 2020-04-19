@@ -63,11 +63,11 @@ start-frontend.sh
 
 ## Backend
 
+### Setting up Application for development
+
 (Assumed to be have python3.6+ and associated pip available in current working path)
 
 <a href='https://docs.python.org/3.6/library/venv.html'>Here's how you can create a virtual environment in python</a>
-
-### Setting up Application for development
 
 ```
 $ ./setup.sh
