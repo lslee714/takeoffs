@@ -14,10 +14,12 @@ function MaterialSelector() {
     (state: IRootState) => state.projects.byId[id]
   );
   return (
-    <Container>
+    <div>
       <ProjectInfo project={project} />
-      <hr />
-    </Container>
+      <Container>
+        <hr />
+      </Container>
+    </div>
   );
 }
 
