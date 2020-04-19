@@ -1,18 +1,32 @@
 import MaterialSelectorActions from '../actions/material-selector';
+import { IMaterialGroup } from '../../models/MaterialSelector';
 
 export interface IMaterialSelectorState {
   isLoading: boolean;
-  byId: {
-    //toDO type
-    [id: number]: any;
+  categories: {
+    byId: {
+      [id: number]: IMaterialGroup;
+    };
+    sorted: number[];
   };
-  sorted: number[];
+  subCategories: {
+    byId: {
+      [id: number]: IMaterialGroup;
+    };
+    sorted: number[];
+  };
 }
 
 export const initialState: IMaterialSelectorState = {
   isLoading: false,
-  byId: {},
-  sorted: [],
+  categories: {
+    byId: {},
+    sorted: [],
+  },
+  subCategories: {
+    byId: {},
+    sorted: [],
+  },
 };
 
 export const materialSelectorReducer = (
@@ -21,22 +35,22 @@ export const materialSelectorReducer = (
 ): IMaterialSelectorState => {
   let newState: IMaterialSelectorState;
   switch (action.type) {
-    case MaterialSelectorActions.MaterialSelectorActionTypes.GetDivisions:
+    case MaterialSelectorActions.MaterialSelectorActionTypes.GetCategories:
       return {
         ...state,
         isLoading: true,
       };
 
-    case MaterialSelectorActions.MaterialSelectorActionTypes.LoadDivisions:
-      const divisions = action.payload.divisions;
+    case MaterialSelectorActions.MaterialSelectorActionTypes.LoadCategories:
+      const categories = action.payload.categories;
       newState = {
         ...state,
         isLoading: false,
       };
       // Assumes sort from payload
-      divisions.forEach((division: any) => {
-        newState.byId[division.id] = division;
-        newState.sorted.push(division.id);
+      categories.forEach((category: any) => {
+        newState.categories.byId[category.id] = category;
+        newState.categories.sorted.push(category.id);
       });
       return newState;
 

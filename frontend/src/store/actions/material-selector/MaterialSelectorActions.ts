@@ -1,36 +1,36 @@
+import { IMaterialGroup } from '../../../models/MaterialSelector';
+
 export enum MaterialSelectorActionTypes {
-  GetDivisions = 'Get Divisions',
-  LoadDivisions = 'Load Divisions',
+  GetCategories = 'Get Categories',
+  LoadCategories = 'Load Categories',
   ResetIsLoading = 'Is Loading',
 }
 
-export interface IGetDivisionsAction {
-  type: MaterialSelectorActionTypes.GetDivisions;
+export interface IGetCategoriesAction {
+  type: MaterialSelectorActionTypes.GetCategories;
 }
 
-export interface ILoadDivisionsAction {
-  type: MaterialSelectorActionTypes.LoadDivisions;
-  //TODO type
-  payload: { divisions: any };
+export interface ILoadCategoriesAction {
+  type: MaterialSelectorActionTypes.LoadCategories;
+  payload: { categories: IMaterialGroup[] };
 }
 
 export interface IResetIsLoadingAction {
   type: MaterialSelectorActionTypes.ResetIsLoading;
 }
 
-export function getDivisions(): IGetDivisionsAction {
+export function getCategories(): IGetCategoriesAction {
   return {
-    type: MaterialSelectorActionTypes.GetDivisions,
+    type: MaterialSelectorActionTypes.GetCategories,
   };
 }
 
-export function loadDivisions(
-  //TODO type
-  divisions: any
-): ILoadDivisionsAction {
+export function loadCategories(
+  categories: IMaterialGroup[]
+): ILoadCategoriesAction {
   return {
-    type: MaterialSelectorActionTypes.LoadDivisions,
-    payload: { divisions },
+    type: MaterialSelectorActionTypes.LoadCategories,
+    payload: { categories },
   };
 }
 
@@ -41,6 +41,6 @@ export function resetIsLoading(): IResetIsLoadingAction {
 }
 
 export type MaterialSelectorActions =
-  | IGetDivisionsAction
-  | ILoadDivisionsAction
+  | IGetCategoriesAction
+  | ILoadCategoriesAction
   | IResetIsLoadingAction;
