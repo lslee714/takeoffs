@@ -4,8 +4,9 @@ import { switchMap, map, catchError, filter } from 'rxjs/operators';
 import { isOfType } from 'typesafe-actions';
 
 import MaterialSelectorActions from '../actions/material-selector';
-import { IMaterialGroup } from '../../models/MaterialSelector';
-import MaterialSelectorService from '../../services/MaterialSelectorService';
+import MaterialSelectorService, {
+  IMaterialCategoriesResponse,
+} from '../../services/MaterialSelectorService';
 
 export const getCategoriesEpic: Epic<
   MaterialSelectorActions.MaterialSelectorActions,
@@ -20,9 +21,8 @@ export const getCategoriesEpic: Epic<
       )
     ),
     switchMap((action: MaterialSelectorActions.IGetCategoriesAction) =>
-      MaterialSelectorService.getCategories().pipe(
-        map((res: IMaterialGroup[]) => {
-          console.log('RES!!', res);
+      MaterialSelectorService.getCategories(action.payload).pipe(
+        map((res: IMaterialCategoriesResponse) => {
           return MaterialSelectorActions.loadCategories(res);
         }),
         catchError((err) => {

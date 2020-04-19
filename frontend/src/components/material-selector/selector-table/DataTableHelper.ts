@@ -9,6 +9,17 @@ export class DataTableHelper {
       { name: 'Total' },
     ];
   }
+
+  getStyles() {
+    return {
+      headCells: {
+        style: {
+          'font-size': '1.25em',
+          'font-weight': 'bold',
+        },
+      },
+    };
+  }
 }
 
 //Export as singleton

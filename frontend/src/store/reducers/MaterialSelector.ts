@@ -8,6 +8,7 @@ export interface IMaterialSelectorState {
       [id: number]: IMaterialGroup;
     };
     sorted: number[];
+    total: number;
   };
   subCategories: {
     byId: {
@@ -22,6 +23,7 @@ export const initialState: IMaterialSelectorState = {
   categories: {
     byId: {},
     sorted: [],
+    total: 0,
   },
   subCategories: {
     byId: {},
@@ -38,6 +40,11 @@ export const materialSelectorReducer = (
     case MaterialSelectorActions.MaterialSelectorActionTypes.GetCategories:
       return {
         ...state,
+        categories: {
+          sorted: [],
+          byId: {},
+          total: 0,
+        },
         isLoading: true,
       };
 
@@ -47,6 +54,7 @@ export const materialSelectorReducer = (
         ...state,
         isLoading: false,
       };
+      newState.categories.total = action.payload.total;
       // Assumes sort from payload
       categories.forEach((category: any) => {
         newState.categories.byId[category.id] = category;

@@ -1,4 +1,4 @@
-import { IMaterialGroup } from '../../../models/MaterialSelector';
+import { IMaterialCategoriesResponse } from '../../../services/MaterialSelectorService';
 
 export enum MaterialSelectorActionTypes {
   GetCategories = 'Get Categories',
@@ -8,29 +8,37 @@ export enum MaterialSelectorActionTypes {
 
 export interface IGetCategoriesAction {
   type: MaterialSelectorActionTypes.GetCategories;
+  payload?: { perPage: number; page: number };
 }
 
 export interface ILoadCategoriesAction {
   type: MaterialSelectorActionTypes.LoadCategories;
-  payload: { categories: IMaterialGroup[] };
+  payload: IMaterialCategoriesResponse;
 }
 
 export interface IResetIsLoadingAction {
   type: MaterialSelectorActionTypes.ResetIsLoading;
 }
 
-export function getCategories(): IGetCategoriesAction {
-  return {
+export function getCategories(payload?: {
+  page: number;
+  perPage: number;
+}): IGetCategoriesAction {
+  const action: IGetCategoriesAction = {
     type: MaterialSelectorActionTypes.GetCategories,
   };
+  if (payload) {
+    action.payload = payload;
+  }
+  return action;
 }
 
 export function loadCategories(
-  categories: IMaterialGroup[]
+  payload: IMaterialCategoriesResponse
 ): ILoadCategoriesAction {
   return {
     type: MaterialSelectorActionTypes.LoadCategories,
-    payload: { categories },
+    payload,
   };
 }
 
