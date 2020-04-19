@@ -8,6 +8,8 @@ import Selector from './selector/Selector';
 import { IConstructionProject } from '../../models/ConstructionProject';
 import { IRootState } from '../../store/reducers';
 
+import './MaterialSelector.scss';
+
 function MaterialSelector() {
   const params = useParams<{ id: string }>();
   const id = params.id;
@@ -15,7 +17,7 @@ function MaterialSelector() {
     (state: IRootState) => state.projects.byId[id]
   );
   return (
-    <div>
+    <div className="material-selector">
       <ProjectInfo project={project} />
       <Selector />
     </div>

@@ -1,9 +1,9 @@
 import React, { useEffect, Dispatch } from 'react';
 import { useDispatch } from 'react-redux';
 
-import './Selector.scss';
-
 import MaterialSelectorActions from '../../../store/actions/material-selector';
+
+import './Selector.scss';
 
 const Selector = () => {
   const dispatch: Dispatch<any> = useDispatch();

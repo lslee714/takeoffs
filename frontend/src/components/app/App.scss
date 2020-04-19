@@ -1,5 +1,9 @@
 @import '../../styles/variables.scss';
 
+.app {
+  height: 100%;
+}
+
 .navbar {
   font-family: Montserrat;
   background-color: $takeoffs-blue;

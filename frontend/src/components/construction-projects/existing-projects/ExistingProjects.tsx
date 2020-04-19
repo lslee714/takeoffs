@@ -4,11 +4,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { TiDeleteOutline } from 'react-icons/ti';
 
-import './ExistingProjects.scss';
-
 import { IConstructionProject } from '../../../models/ConstructionProject';
 import { IRootState } from '../../../store/reducers';
 import ConstructionProjectsActions from '../../../store/actions/construction-projects';
+
+import './ExistingProjects.scss';
 
 function ExistingProjects() {
   const history = useHistory();

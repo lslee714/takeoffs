@@ -8,7 +8,6 @@ import ConstructionProjectsActions from '../../store/actions/construction-projec
 import MaterialSelector from '../material-selector/MaterialSelector';
 
 import './App.scss';
-
 import logo from '../../assets/logo.png';
 
 const App: React.FC = (props) => {
@@ -19,28 +18,30 @@ const App: React.FC = (props) => {
   });
 
   return (
-    <BrowserRouter>
-      <Nav className="navbar">
-        <Nav.Item>
-          <Link className="logo" to="/">
-            <img src={logo} alt="Takeoffs" />
-          </Link>
-        </Nav.Item>
-      </Nav>
-      <Switch>
-        <Route
-          exact
-          path={['/', '/projects']}
-          component={ConstructionProjects}
-        />
-        <Route
-          exact
-          path={'/material-selector/:id'}
-          component={MaterialSelector}
-          id=":id"
-        />
-      </Switch>
-    </BrowserRouter>
+    <div className="app">
+      <BrowserRouter>
+        <Nav className="navbar">
+          <Nav.Item>
+            <Link className="logo" to="/">
+              <img src={logo} alt="Takeoffs" />
+            </Link>
+          </Nav.Item>
+        </Nav>
+        <Switch>
+          <Route
+            exact
+            path={['/', '/projects']}
+            component={ConstructionProjects}
+          />
+          <Route
+            exact
+            path={'/material-selector/:id'}
+            component={MaterialSelector}
+            id=":id"
+          />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 };
 
