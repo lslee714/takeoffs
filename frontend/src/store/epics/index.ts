@@ -1,7 +1,7 @@
 import { combineEpics, createEpicMiddleware } from 'redux-observable';
 
-import { getProjectsEpic } from './ConstructionProjectsEpics';
+import { getProjectsEpic, postProjectEpic } from './ConstructionProjectsEpics';
 
-export const rootEpic = combineEpics(getProjectsEpic);
+export const rootEpic = combineEpics(getProjectsEpic, postProjectEpic);
 
 export default createEpicMiddleware();

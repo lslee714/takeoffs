@@ -10,6 +10,7 @@ function ConstructionProjects() {
   return (
     <Container>
       <ExistingProjects />
+      <hr />
       <ProjectForm />
     </Container>
   );

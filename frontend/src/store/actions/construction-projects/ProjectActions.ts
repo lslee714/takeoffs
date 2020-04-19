@@ -4,6 +4,7 @@ export enum ProjectActionTypes {
   GetProjects = 'Get Projects',
   LoadProjects = 'Projects Loaded',
   ResetIsLoading = 'Projects Reset Is Loading',
+  CreateProject = 'Create Project',
 }
 
 export interface IGetProjectsAction {
@@ -17,6 +18,11 @@ export interface ILoadProjectsAction {
 
 export interface IResetIsLoadingAction {
   type: ProjectActionTypes.ResetIsLoading;
+}
+
+export interface ICreateProjectAction {
+  type: ProjectActionTypes.CreateProject;
+  payload: { project: ConstructionProject.IConstructionProject };
 }
 
 export function getProjects(): IGetProjectsAction {
@@ -40,7 +46,17 @@ export function resetIsLoading(): IResetIsLoadingAction {
   };
 }
 
+export function createProject(
+  project: ConstructionProject.IConstructionProject
+): ICreateProjectAction {
+  return {
+    type: ProjectActionTypes.CreateProject,
+    payload: { project },
+  };
+}
+
 export type ProjectActions =
   | IGetProjectsAction
   | ILoadProjectsAction
-  | IResetIsLoadingAction;
+  | IResetIsLoadingAction
+  | ICreateProjectAction;

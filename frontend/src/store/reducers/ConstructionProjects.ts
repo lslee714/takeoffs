@@ -26,6 +26,12 @@ export const projectsReducer = (
         isLoading: true,
       };
 
+    case ConstructionProjectActions.ProjectActionTypes.CreateProject:
+      return {
+        ...state,
+        isLoading: true,
+      };
+
     case ConstructionProjectActions.ProjectActionTypes.LoadProjects:
       const projects = action.payload.projects;
       const newState = {
@@ -33,7 +39,6 @@ export const projectsReducer = (
         isLoading: false,
       };
       // Assumes sort from payload
-      console.log('PROJECTS', projects);
       projects.forEach((project: IConstructionProject) => {
         newState.byId[project.id] = project;
         newState.sorted.push(project.id);

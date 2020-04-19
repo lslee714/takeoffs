@@ -7,6 +7,6 @@ export interface IConstructionProject {
   id: number;
   name: string;
   location: string;
+  images?: IConstructionProjectImage[];
   description?: string;
-  images: IConstructionProjectImage[];
 }

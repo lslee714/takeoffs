@@ -21,7 +21,13 @@ def register(blueprint):
     @cross_origin()
     def create_project():
         """Create a project and return its ID"""
-        print("NEW POST", request.json)
-        return jsonify({})
+        projectData = request.get_json();
+        # Remove placeholder ID
+        projectData.pop('id')
+        newProject = Project(**projectData)
+        session.add(newProject)
+        session.commit()
+        print("Project Added", newProject)
+        return jsonify(ProjectJson(newProject)())
     
             
