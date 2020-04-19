@@ -1,32 +1,30 @@
 from flask import url_for
 
-from construction_projects import ProjectController
+from material_selector import MaterialController
 
 
 class CategoryJson:
-    def __init__(self, project):
-        self.project = project
+
+    def __init__(self, categoryResponse):
+        self.categoryResponse = categoryResponse
     
     def __call__(self):
-        if not self.project.id: #not yet flushed / available for client
-            return {}
-        ts = self.project.ts_created.isoformat()
-        links = self.create_links()
+        """Return the response formatted into frontend desired JSON"""
         return {
-            'id': self.project.id,
-            'tsCreated': ts,
-            'name': self.project.name,
-            'description': self.project.description or '',
-            'location': self.project.location or '',
-            'links': links
+            'id': self.id,
+            'name': self.name,
         }
     
-    def create_links(self):
-        return {
-            'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True)
-        }
+    @property
+    def id(self):
+        """The Id for the category parsed from the response"""
+        idKey = '@id'
+        idRes = self.categoryResponse[idKey]
+        #Response returns the id with additional paths for it
+        return int(idRes.split('/')[-1])
 
-    @classmethod
-    def get_all_projects_as_json(cls, session):
-        projects = ProjectController(session).get_projects()
-        return list(map(lambda p: cls(p)(), projects))
+    @property
+    def name(self):
+        """The name for the category parsed from the response"""
+        nameKey = 'category'
+        return self.categoryResponse[nameKey]

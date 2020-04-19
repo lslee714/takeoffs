@@ -10,7 +10,7 @@ class MaterialController:
             'itemsPerPage': itemsPerPage
         }
         url = f'{self.API_URL}/categories'
-        return requests.get(url, queryParams)
-
-
+        responseJson = requests.get(url, queryParams).json()
+        categoryKey = 'hydra:member'
+        return responseJson[categoryKey]
     
