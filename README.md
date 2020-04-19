@@ -24,13 +24,15 @@ Create an application allowing the user to:
 - I used gunicorn to serve the flask backend; it's also widely accepted as a Python WSGI HTTP server and I'm familiar with it.
 - I added a redux-observable layer for my UI state management; it's a pretty heavy, all purpose Redux tool for React that allows me to use rxjs with Observables, which is where Javascript is heading more and more towards! More info in frontend/src/store
 - I don't follow snake_case for my local variables in Python; I prefer camelCase for it, so those are intentional. But generally followed PEP8 otherwise.
-- I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which makes the app a little more rigid.
+- I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
+- There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
 - Very happy pathed..
-- Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial
+- Probably should separate the one backend app blueprints into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
+- Using sqlite, hosting a full microserviced application in the cloud w/ a database also is nt trivial
 - No frontend form validation
 - Testing lacking
 - Little scss methodology, mostly setting values empirically
