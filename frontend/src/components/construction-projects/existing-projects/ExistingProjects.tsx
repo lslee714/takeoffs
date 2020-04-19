@@ -20,6 +20,9 @@ function ExistingProjects() {
     }
   );
 
+  if (!existingProjects.length) {
+    return <div />;
+  }
   return (
     <div>
       <h3>Existing Projects</h3>

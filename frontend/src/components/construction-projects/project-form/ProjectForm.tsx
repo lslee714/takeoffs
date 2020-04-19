@@ -18,67 +18,70 @@ function ProjectForm() {
   ] = useState({ id: 0, name: '', location: '' });
 
   return (
-    <Form>
-      <Form.Group controlId="projectName">
-        <Form.Label>Project Name</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="What's the name of the project?"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const val = e.target.value;
-            setProject((prevState) => {
-              return {
-                ...prevState,
-                name: val,
-              };
-            });
-          }}
-        />
-      </Form.Group>
+    <div>
+      <h3>Create a new project</h3>
+      <Form>
+        <Form.Group controlId="projectName">
+          <Form.Label>Project Name</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="What's the name of the project?"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              const val = e.target.value;
+              setProject((prevState) => {
+                return {
+                  ...prevState,
+                  name: val,
+                };
+              });
+            }}
+          />
+        </Form.Group>
 
-      <Form.Group controlId="projectDescription">
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Describe this project"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const val = e.target.value;
-            setProject((prevState) => {
-              return {
-                ...prevState,
-                description: val,
-              };
-            });
-          }}
-        />
-      </Form.Group>
-      <Form.Group controlId="projectLocation">
-        <Form.Label>Location</Form.Label>
-        <Form.Control
-          type="text"
-          placeholder="Where is this project?"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            const val = e.target.value;
-            setProject((prevState) => {
-              return {
-                ...prevState,
-                location: val,
-              };
-            });
-          }}
-        />
-      </Form.Group>
-      <Button
-        className="float-right"
-        variant="primary"
-        type="button"
-        onClick={() =>
-          dispatch(ConstructionProjectsActions.createProject(project))
-        }
-      >
-        Create
-      </Button>
-    </Form>
+        <Form.Group controlId="projectDescription">
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Describe this project"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              const val = e.target.value;
+              setProject((prevState) => {
+                return {
+                  ...prevState,
+                  description: val,
+                };
+              });
+            }}
+          />
+        </Form.Group>
+        <Form.Group controlId="projectLocation">
+          <Form.Label>Location</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Where is this project?"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              const val = e.target.value;
+              setProject((prevState) => {
+                return {
+                  ...prevState,
+                  location: val,
+                };
+              });
+            }}
+          />
+        </Form.Group>
+        <Button
+          className="float-right"
+          variant="primary"
+          type="button"
+          onClick={() =>
+            dispatch(ConstructionProjectsActions.createProject(project))
+          }
+        >
+          Create
+        </Button>
+      </Form>
+    </div>
   );
 }
 
