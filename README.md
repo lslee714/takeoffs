@@ -22,6 +22,15 @@ Create an application allowing the user to:
 - I did separate out the UI and backend into their own separate applications, i.e. I did not create a monolith. While I actually saw an argument _**for**_ a monolith (it's a simple application with limited purpose), I wanted to keep flexibility and scalability in mind. In addition, I admittedly do not have a ton of outside of work experience in setting up microservices, so it is a great learning opportunity. We'll see how this ends up!
 - I used NGINX to serve the frontend; it's a widely accepted static content server in the community.
 - I used gunicorn to serve the flask backend; it's also widely accepted as a Python WSGI HTTP server and I'm familiar with it.
+- I added a redux-observable layer for my UI state management; it's a pretty heavy, all purpose Redux tool for React that allows me to use rxjs with Observables, which is where Javascript is heading more and more towards!
+- I don't follow snake_case for my local variables in Python; I prefer camelCase for it, so those are intentional
+- I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which makes the app a little more rigid.
+
+#### Shortcuts I took so far (mostly due to time constraints)
+
+- Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial
+- No frontend form validation
+- Testing lacking
 
 ## Frontend
 
