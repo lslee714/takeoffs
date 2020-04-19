@@ -1,6 +1,12 @@
 import { Epic } from 'redux-observable';
 import { of } from 'rxjs';
-import { switchMap, map, catchError, filter } from 'rxjs/operators';
+import {
+  switchMap,
+  map,
+  catchError,
+  filter,
+  ignoreElements,
+} from 'rxjs/operators';
 import { isOfType } from 'typesafe-actions';
 
 import ConstructionProjectActions from '../actions/construction-projects';
@@ -65,10 +71,7 @@ export const deleteProjectEpic: Epic<
     ),
     switchMap((action: ConstructionProjectActions.IDeleteProjectAction) =>
       ConstructionProjectsService.deleteProject(action.payload.link).pipe(
-        map((res: AjaxResponse) => {
-          const project = res.response;
-          return ConstructionProjectActions.loadProjects([...project]);
-        }),
+        ignoreElements(),
         catchError((err) => {
           console.log('err', err);
           return of(ConstructionProjectActions.resetIsLoading());

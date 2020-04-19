@@ -38,6 +38,8 @@ function ExistingProjects() {
             }
           >
             {project.name}
+            {project.description ? ` - ${project.description}` : ''}
+            {project.location ? ` - ${project.location}` : ''}
             <a
               className="float-right"
               onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
