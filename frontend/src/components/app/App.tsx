@@ -9,6 +9,8 @@ import MaterialSelector from '../material-selector/MaterialSelector';
 
 import './App.scss';
 
+import logo from '../../assets/logo.png';
+
 const App: React.FC = (props) => {
   const dispatch: Dispatch<any> = useDispatch();
 
@@ -21,7 +23,7 @@ const App: React.FC = (props) => {
       <Nav className="navbar">
         <Nav.Item>
           <Link className="logo" to="/">
-            Takeoffs
+            <img src={logo} alt="Takeoffs" />
           </Link>
         </Nav.Item>
       </Nav>
