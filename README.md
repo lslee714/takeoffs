@@ -47,7 +47,7 @@ Create an application allowing the user to:
 
 ## TL;DR
 
-To run locally:
+To run locally with production builds:
 
 ```
  ./run.sh
