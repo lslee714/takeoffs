@@ -31,10 +31,8 @@ ADDITIONAL_PROJECT_ARGS = { schemaKey: 'construction_projects' }
 def upgrade():
     if check_is_sqlite(): 
         ADDITIONAL_PROJECT_ARGS.pop(schemaKey)
-        ADDITIONAL_MATERIAL_SELECTOR_ARGS.pop(schemaKey)
     else: 
         op.create_schema(ADDITIONAL_PROJECT_ARGS[schemaKey])
-        op.create_schema(ADDITIONAL_MATERIAL_SELECTOR_ARGS[schemaKey])
         
     op.create_table('project',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -63,5 +61,4 @@ def downgrade():
     op.drop_table('upload')
     op.drop_table('project')
     if not check_is_sqlite():
-        op.drop_schema(ADDITIONAL_MATERIAL_SELECTOR_ARGS[schemaKey])
         op.drop_schema(ADDITIONAL_PROJECT_ARGS[schemaKey])
