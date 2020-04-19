@@ -35,6 +35,7 @@ Create an application allowing the user to:
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
 - No frontend form validation
 - Testing lacking
+- Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
 - Little scss methodology, mostly setting values empirically
 
 #### Things that I learned:
