@@ -9,7 +9,7 @@ export interface IConstructionProjectsState {
   sorted: number[];
 }
 
-const initialState: IConstructionProjectsState = {
+export const initialState: IConstructionProjectsState = {
   isLoading: false,
   byId: {},
   sorted: [],
