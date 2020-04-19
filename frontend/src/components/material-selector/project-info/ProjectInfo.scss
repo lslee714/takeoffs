@@ -1,7 +1,9 @@
+@import '../../../styles/variables.scss';
+
 .infotron {
   height: 200px;
   background-color: white;
-  border-bottom: 2px solid #05172f;
+  border-bottom: 2px solid $takeoffs-blue;
   box-shadow: 0 4px 2px -2px gray;
   border-radius: 0px !important;
   padding: 0 60px 0 60px;
