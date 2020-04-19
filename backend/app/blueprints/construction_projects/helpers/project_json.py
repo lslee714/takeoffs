@@ -8,6 +8,7 @@ class ProjectJson:
         self.project = project
     
     def __call__(self):
+        """Implement class as callable to return the json"""
         if not self.project.id: #not yet flushed / available for client
             return {}
         ts = self.project.ts_created.isoformat()
@@ -22,11 +23,13 @@ class ProjectJson:
         }
     
     def create_links(self):
+        """Return link map for the object"""
         return {
             'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True)
         }
 
     @classmethod
     def get_all_projects_as_json(cls, session):
+        """Helper to pre hook this into db connector"""
         projects = ProjectController(session).get_projects()
         return list(map(lambda p: ProjectJson(p)(), projects))

@@ -12,4 +12,5 @@ def register(blueprint):
     def get_categories():
         """Root for the root blueprint"""
         categories = CategoryJson.get_categories()
+        # Trusting sort from API so far
         return jsonify(categories)        
