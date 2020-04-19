@@ -1,4 +1,5 @@
 import React, { Dispatch } from 'react';
+import { useHistory } from 'react-router-dom';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector, useDispatch } from 'react-redux';
 import { TiDeleteOutline } from 'react-icons/ti';
@@ -10,6 +11,7 @@ import { IRootState } from '../../../store/reducers';
 import ConstructionProjectsActions from '../../../store/actions/construction-projects';
 
 function ExistingProjects() {
+  const history = useHistory();
   const dispatch: Dispatch<any> = useDispatch();
   const existingProjects: IConstructionProject[] = useSelector(
     (state: IRootState) => {
@@ -25,15 +27,21 @@ function ExistingProjects() {
   }
   return (
     <div>
-      <h3>Existing Projects</h3>
+      <h3>Existing Projects, click to view material selection</h3>
       <ListGroup>
         {existingProjects.map((project: IConstructionProject) => (
-          <ListGroup.Item key={project.id} action>
+          <ListGroup.Item
+            key={project.id}
+            action
+            onClick={(e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) =>
+              history.push(`/material-selector/${project.id}`)
+            }
+          >
             {project.name}
             <a
               className="float-right"
               onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.preventDefault();
+                e.stopPropagation();
                 // Should always have it at this point, but compiler isnt smart enough
                 if (project.links) {
                   return dispatch(

@@ -5,6 +5,7 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
 import ConstructionProjects from '../construction-projects/ConstructionProjects';
 import ConstructionProjectsActions from '../../store/actions/construction-projects';
+import MaterialSelector from '../material-selector/MaterialSelector';
 
 import './App.css';
 
@@ -25,7 +26,17 @@ const App: React.FC = (props) => {
         </Nav.Item>
       </Nav>
       <Switch>
-        <Route exact path="/" component={ConstructionProjects} />
+        <Route
+          exact
+          path={['/', '/projects']}
+          component={ConstructionProjects}
+        />
+        <Route
+          exact
+          path={'/material-selector/:id'}
+          component={MaterialSelector}
+          id=":id"
+        />
       </Switch>
     </BrowserRouter>
   );
