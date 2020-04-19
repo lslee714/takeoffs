@@ -11,6 +11,7 @@ RUN python -m venv venv
 
 RUN venv/bin/pip install -r requirements.txt
 
+COPY backend/construction_projects construction_projects
 COPY backend/models models
 COPY backend/app app
 COPY backend/migrations migrations
