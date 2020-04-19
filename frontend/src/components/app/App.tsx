@@ -3,8 +3,8 @@ import Nav from 'react-bootstrap/Nav';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
-import ConstructionProjects from './components/construction-projects/ConstructionProjects';
-import ConstructionProjectsActions from './store/actions/construction-projects';
+import ConstructionProjects from '../construction-projects/ConstructionProjects';
+import ConstructionProjectsActions from '../../store/actions/construction-projects';
 
 import './App.css';
 
