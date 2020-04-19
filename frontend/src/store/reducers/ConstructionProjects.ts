@@ -19,6 +19,7 @@ export const projectsReducer = (
   state: IConstructionProjectsState = initialState,
   action: ConstructionProjectActions.ProjectActions
 ): IConstructionProjectsState => {
+  let newState: IConstructionProjectsState;
   switch (action.type) {
     case ConstructionProjectActions.ProjectActionTypes.GetProjects:
       return {
@@ -32,9 +33,18 @@ export const projectsReducer = (
         isLoading: true,
       };
 
+    case ConstructionProjectActions.ProjectActionTypes.DeleteProject:
+      const id = action.payload.id;
+      newState = {
+        ...state,
+      };
+      delete newState.byId[id];
+      newState.sorted.splice(newState.sorted.indexOf(id), 1);
+      return newState;
+
     case ConstructionProjectActions.ProjectActionTypes.LoadProjects:
       const projects = action.payload.projects;
-      const newState = {
+      newState = {
         ...state,
         isLoading: false,
       };

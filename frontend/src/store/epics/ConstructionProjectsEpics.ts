@@ -52,3 +52,27 @@ export const postProjectEpic: Epic<
       )
     )
   );
+
+export const deleteProjectEpic: Epic<
+  ConstructionProjectActions.ProjectActions,
+  ConstructionProjectActions.ProjectActions,
+  // Should be IRootState but typescript complaining..
+  any
+> = (action$, state$) =>
+  action$.pipe(
+    filter(
+      isOfType(ConstructionProjectActions.ProjectActionTypes.DeleteProject)
+    ),
+    switchMap((action: ConstructionProjectActions.IDeleteProjectAction) =>
+      ConstructionProjectsService.deleteProject(action.payload.link).pipe(
+        map((res: AjaxResponse) => {
+          const project = res.response;
+          return ConstructionProjectActions.loadProjects([...project]);
+        }),
+        catchError((err) => {
+          console.log('err', err);
+          return of(ConstructionProjectActions.resetIsLoading());
+        })
+      )
+    )
+  );

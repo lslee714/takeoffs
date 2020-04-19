@@ -9,4 +9,7 @@ export interface IConstructionProject {
   location: string;
   images?: IConstructionProjectImage[];
   description?: string;
+  links?: {
+    [name: string]: string;
+  };
 }

@@ -1,5 +1,5 @@
-
 from datetime import datetime
+from flask import url_for
 from unittest import TestCase
 
 from models import Project
@@ -18,6 +18,10 @@ class test_call(TestCase):
 
     def test_with_flushed_id(self):
         """A flushed and available project should return a proper json"""
+
+        #This test will fail if not run w/ run_app_tests.py
+        #As it uses url_for which requires an app context        
+
         id = 1
         ts = datetime.now()
 
@@ -32,6 +36,9 @@ class test_call(TestCase):
             'tsCreated': ts.isoformat(),
             'name': projectNameStub,
             'description': '',
-            'location': ''
+            'location': '',
+            'links': {
+                'delete': url_for('construction_projects.delete_project', projectId=id, _external=True)
+            }
         }
         self.assertEqual(projectJsonData, expectedResult)

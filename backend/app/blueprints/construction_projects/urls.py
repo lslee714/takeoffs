@@ -2,6 +2,7 @@ from flask import jsonify, request
 from flask_cors import cross_origin
 
 from app import session
+from construction_projects import ProjectController
 from models import Project
 
 from .helpers import ProjectJson
@@ -13,8 +14,7 @@ def register(blueprint):
     @cross_origin()
     def get_projects():
         """Returns the existing projects, sorted by TS created"""
-        projects = session.query(Project).order_by(Project.ts_created.desc()).all()
-        projectJsons = list(map(lambda p: ProjectJson(p)(), projects))
+        projectJsons = ProjectJson.get_all_projects_as_json(session)
         return jsonify(projectJsons)
 
     @blueprint.route('/', methods=['POST'])
@@ -27,7 +27,16 @@ def register(blueprint):
         newProject = Project(**projectData)
         session.add(newProject)
         session.commit()
-        print("Project Added", newProject)
         return jsonify(ProjectJson(newProject)())
+    
+    @blueprint.route('/<projectId>', methods=['DELETE'])
+    @cross_origin()
+    def delete_project(projectId):
+        """Delete a project and return the remainder"""
+        projectController = ProjectController(session)
+        projectController.delete_project(projectId)
+        session.commit()
+        projectJsons = ProjectJson.get_all_projects_as_json(session)
+        return jsonify(projectJsons)
     
             

@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { ajax } from 'rxjs/ajax';
+import { ajax, AjaxResponse } from 'rxjs/ajax';
 import { IConstructionProject } from '../models/ConstructionProject';
 
 export class ConstructionProjectsService {
@@ -10,7 +10,7 @@ export class ConstructionProjectsService {
     return ajax.getJSON<IConstructionProject[]>(this.apiBaseUrl);
   }
 
-  postProject(project: IConstructionProject): Observable<any> {
+  postProject(project: IConstructionProject): Observable<AjaxResponse> {
     return ajax({
       url: this.apiBaseUrl,
       method: 'POST',
@@ -18,6 +18,13 @@ export class ConstructionProjectsService {
         'Content-Type': 'application/json',
       },
       body: project,
+    });
+  }
+
+  deleteProject(projectDeleteLink: string): Observable<AjaxResponse> {
+    return ajax({
+      url: projectDeleteLink,
+      method: 'DELETE',
     });
   }
 }
