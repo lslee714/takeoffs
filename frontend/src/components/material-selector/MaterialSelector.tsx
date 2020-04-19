@@ -1,9 +1,10 @@
 import React from 'react';
-import Container from 'react-bootstrap/Container';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 import ProjectInfo from './project-info/ProjectInfo';
+import Selector from './selector/Selector';
+
 import { IConstructionProject } from '../../models/ConstructionProject';
 import { IRootState } from '../../store/reducers';
 
@@ -16,7 +17,7 @@ function MaterialSelector() {
   return (
     <div>
       <ProjectInfo project={project} />
-      <Container></Container>
+      <Selector />
     </div>
   );
 }

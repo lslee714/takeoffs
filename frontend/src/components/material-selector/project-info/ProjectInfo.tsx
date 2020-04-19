@@ -15,14 +15,18 @@ const ProjectInfo: React.FC<{ project: IConstructionProject }> = (props: {
   if (props.project) {
     return (
       <Jumbotron className="infotron">
-        <div className="project-name">
-          <a className="prev-arrow" href="/">
-            <FaArrowLeft size={'2em'} />
-          </a>
-          <h2>{props.project.name}</h2>
+        <div className="pad">
+          <div className="project-name">
+            <a className="prev-arrow" href="/">
+              <FaArrowLeft size={'2em'} />
+            </a>
+            <h2>{props.project.name}</h2>
+          </div>
+          <AdditionalProjectInfo />
         </div>
-        <AdditionalProjectInfo />
-        <ProjectTabs />
+        <div className="padless">
+          <ProjectTabs />
+        </div>
       </Jumbotron>
     );
   } else {

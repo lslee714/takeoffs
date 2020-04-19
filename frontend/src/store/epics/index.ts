@@ -5,11 +5,13 @@ import {
   postProjectEpic,
   deleteProjectEpic,
 } from './ConstructionProjectsEpics';
+import { getCategoriesEpic } from './MaterialSelectorEpics';
 
 export const rootEpic = combineEpics(
   getProjectsEpic,
   postProjectEpic,
-  deleteProjectEpic
+  deleteProjectEpic,
+  getCategoriesEpic
 );
 
 export default createEpicMiddleware();
