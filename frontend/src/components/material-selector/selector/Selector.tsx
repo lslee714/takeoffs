@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import { useDispatch } from 'react-redux';
 
+import Cart from '../cart/Cart';
 import SelectorTable from '../selector-table/SelectorTable';
 import MaterialSelectorActions from '../../../store/actions/material-selector';
 
@@ -23,7 +24,9 @@ const Selector = () => {
           <Col sm={8}>
             <SelectorTable />
           </Col>
-          <Col sm={4}>Cart view here</Col>
+          <Col sm={4}>
+            <Cart />
+          </Col>
         </Row>
       </Container>
     </div>

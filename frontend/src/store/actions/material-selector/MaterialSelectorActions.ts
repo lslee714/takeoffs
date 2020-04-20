@@ -10,6 +10,8 @@ export enum MaterialSelectorActionTypes {
   GetProducts = 'Get Products',
   LoadProducts = 'Load Products',
   ResetIsLoading = 'Is Loading',
+  ShowInCart = 'Show In Cart',
+  AddToCart = 'Add To Cart',
 }
 
 export interface IGetCategoriesAction {
@@ -34,6 +36,20 @@ export interface ILoadProductsAction {
 
 export interface IResetIsLoadingAction {
   type: MaterialSelectorActionTypes.ResetIsLoading;
+}
+
+export interface IShowInCartAction {
+  type: MaterialSelectorActionTypes.ShowInCart;
+  payload: {
+    product: IMaterialProduct;
+  };
+}
+
+export interface IAddToCartAction {
+  type: MaterialSelectorActionTypes.AddToCart;
+  payload: {
+    productId: string;
+  };
 }
 
 export function getCategories(payload?: {
@@ -81,9 +97,27 @@ export function resetIsLoading(): IResetIsLoadingAction {
   };
 }
 
+export function showInCart(product: IMaterialProduct): IShowInCartAction {
+  return {
+    type: MaterialSelectorActionTypes.ShowInCart,
+    payload: {
+      product,
+    },
+  };
+}
+
+export function addToCart(productId: string): IAddToCartAction {
+  return {
+    type: MaterialSelectorActionTypes.AddToCart,
+    payload: { productId },
+  };
+}
+
 export type MaterialSelectorActions =
   | IGetCategoriesAction
   | ILoadCategoriesAction
   | IResetIsLoadingAction
   | IGetProductsAction
-  | ILoadProductsAction;
+  | ILoadProductsAction
+  | IShowInCartAction
+  | IAddToCartAction;

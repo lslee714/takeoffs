@@ -52,9 +52,10 @@ Create an application allowing the user to:
 
 - How to set up app as pure "production-ready-ish" microservices, separating client/backend.
 - Using functional components with hooks in React with Typescript, still a lot to learn there, exciting!
-- A lot about the existing Takeoffs API, though still some confusion as alluded to above. Another example: why doesn't a product have a storeId? Rather, it has a storeProductId...but there's no storeProduct API?
-- Also, the get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
-- Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (just assuming it's empty), but ...time (for now!)
+- A lot about the existing Takeoffs API, though still some confusion as alluded to above. Also, \$ should be ints!
+- Another example: why doesn't a product have a storeId? Rather, it has a storeProductId...but there's no storeProduct API?
+- Another, the get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
+- Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (silence, dont let it block other requests), but ...time (for now!). For example, I could red out the row if there's no result found and slowly animate it away.
 
 ## TL;DR
 

@@ -22,6 +22,12 @@ export interface IMaterialSelectorState {
     };
     sorted: string[];
   };
+  cart: {
+    shown: string[];
+    added: {
+      [productId: string]: number;
+    };
+  };
 }
 
 export const initialState: IMaterialSelectorState = {
@@ -35,6 +41,10 @@ export const initialState: IMaterialSelectorState = {
     byCategoryId: {},
     byId: {},
     sorted: [],
+  },
+  cart: {
+    shown: [],
+    added: {},
   },
 };
 
@@ -85,6 +95,20 @@ export const materialSelectorReducer = (
         newState.products.byId[product.id] = product;
         newState.products.sorted.push(product.id);
       });
+      return newState;
+
+    case MaterialSelectorActions.MaterialSelectorActionTypes.ShowInCart:
+      const product = action.payload.product;
+      newState = {
+        ...state,
+      };
+      const currentIndex = newState.cart.shown.indexOf(product.id);
+      const alreadyExists = currentIndex > -1;
+      if (alreadyExists) {
+        newState.cart.shown.splice(currentIndex, 1);
+      } else {
+        newState.cart.shown = [...newState.cart.shown, product.id];
+      }
       return newState;
 
     default:

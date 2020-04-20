@@ -1,11 +1,9 @@
 export class DataTableHelper {
   getColumns() {
     return [
-      { name: 'Item', selector: 'name', grow: 8 },
+      { name: 'Item', selector: 'name', grow: 7 },
       { name: 'Unit' },
       { name: 'Unit $' },
-      { name: 'Items' },
-      { name: 'Total' },
     ];
   }
 
