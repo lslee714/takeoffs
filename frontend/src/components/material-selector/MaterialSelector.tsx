@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Redirect } from 'react-router-dom';
 
 import ProjectInfo from './project-info/ProjectInfo';
 import Selector from './selector/Selector';
@@ -16,12 +16,16 @@ function MaterialSelector() {
   const project: IConstructionProject = useSelector(
     (state: IRootState) => state.projects.byId[id]
   );
-  return (
-    <div className="material-selector">
-      <ProjectInfo project={project} />
-      <Selector />
-    </div>
-  );
+  if (project) {
+    return (
+      <div className="material-selector">
+        <ProjectInfo project={project} />
+        <Selector />
+      </div>
+    );
+  } else {
+    return <Redirect to="/" />;
+  }
 }
 
 export default MaterialSelector;
