@@ -21,14 +21,15 @@ Create an application allowing the user to:
 
 - Currently, the project allows the user to:
 
-  - Create a project
-  - With a project, select products from a various categories
+  - Create a project or delete an existing one
+  - With a project, view and select products from various categories in the material selector which includes backend pagination
   - Within the cart preview, adjust the quantity and add to the project or remove it from preview
-  - On revisiting the project view, view the number of items added to the project
+  - On revisiting the project view, view the number of items in the project
 
 - Some other features I didn't get around to due to time:
 
-  - View what is in the cart. Given the flow of the current state, specifically not storing all the product API result details in the database, this entails either: a) store the product API details in the database or b) given the API id I do store, fetch those products when a project is viewed.
+  - Show project total in the project view.
+  - View what is in the cart. Given the flow of the current state - specifically not storing all the product API result details in the database - this entails either: a) store the product API details in the database or b) given the API id I do store, fetch those products when a project is viewed.
   - The location based searching. More below on this.
   - Editting the information for a project.
   - Updating the cart for a project rather than re-writing each time.
