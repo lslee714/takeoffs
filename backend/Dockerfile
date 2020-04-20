@@ -4,12 +4,15 @@ RUN adduser -D docker
 RUN apk update
 RUN apk add make automake gcc g++ subversion python3-dev
 
-WORKDIR /home/docker
-
 COPY backend/requirements.txt requirements.txt
 RUN python -m venv venv
+RUN \
+    apk add --no-cache postgresql-libs && \
+    apk add --no-cache --virtual .build-deps gcc musl-dev postgresql-dev && \
+    venv/bin/pip install -r requirements.txt --no-cache-dir && \
+    apk --purge del .build-deps
 
-RUN venv/bin/pip install -r requirements.txt
+WORKDIR /home/docker
 
 COPY backend/construction_projects construction_projects
 COPY backend/material_selector material_selector
