@@ -34,7 +34,7 @@ Create an application allowing the user to:
 - "Caveman" orchestration (my own script rather than something like docker compose)
 - I want to set up kubernetes with it, ambitiously!
 - Very happy pathed..
-- Probably should separate the one backend app blueprints into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
+- Could separate the one backend app into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
 - No frontend form validation
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) so got a little time concerned over that too).
@@ -44,10 +44,11 @@ Create an application allowing the user to:
 
 #### Things that I learned:
 
+- A lot about the existing Takeoffs API, still some confusion, e.g. why doesn't a product have a storeId but it has a storeProductId There's also no storeProduct API.
 - Setting up app as pure "producution-ready-ish" microservices, separating client/backend
 - Using function components with hooks in React with typescript, still a lot to learn there, exciting!
 - The get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
-- Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (just assuming it's empty), but ... time (for now!)
+- Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (just assuming it's empty), but ...time (for now!)
 
 ## TL;DR
 
