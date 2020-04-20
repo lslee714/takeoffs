@@ -18,6 +18,7 @@ Create an application allowing the user to:
 
 #### Project retro notes:
 
+- Not knowing the data very well, I did my best to match the story of "let users create projects and allow adding items to it" with the UX recommendations/wireframes. I realize this wasn't the full ask of the challenge/requirement, but I took the "fill in the requirements yourself" part in full stride, perhaps (but hopefully not) too far :D
 - I chose a mono-repo (but multi-app) approach, this buys me a couple of things: a) API compatibility; and b) easy developer experience for a small one-man team.
 - I separated out the UI and backend into their own separate applications, i.e. I did not create a monolith. While I actually saw an argument _**for**_ a monolith (it's a simple application with limited purpose -- and would have been a lot easier!), I wanted to keep flexibility and scalability in mind. In addition, I admittedly do not have a ton of outside of work experience in setting up microservices, so it is a great learning opportunity. We'll see how this ends up!
 - I used NGINX to serve the frontend; it's a widely accepted static content server in the community.
@@ -34,6 +35,7 @@ Create an application allowing the user to:
 - "Caveman" orchestration (my own script rather than something like docker compose)
 - I want to set up kubernetes with it, ambitiously!
 - Very happy pathed..
+- I punted (so far) on the location/searching aspect.. I regret this decision as when I re-read the challenge, it seems like it was a big part of the challenge; however, when playing with the API, I had difficult getting results to come up given productName/location.
 - Could separate the one backend app into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
 - No frontend form validation
@@ -101,7 +103,7 @@ $ alembic upgrade heads
 ```
 $ source env.sh (If environment not loaded)
 *$ python run_app_tests.py
-(runs unittest in app context for Flask-based unittests, if applicable) OR $ python -m unittest
+(runs unittest in app context for Flask context-based unittests) OR $ python -m unittest (which will end up w/ the aforementioned failing.)
 
 $ python run.py
 ```
