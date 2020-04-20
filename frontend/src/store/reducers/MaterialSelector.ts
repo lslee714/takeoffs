@@ -48,9 +48,9 @@ export const materialSelectorReducer = (
       return {
         ...state,
         categories: {
+          ...state.categories,
           sorted: [],
           byId: {},
-          ...state.categories,
         },
         isLoading: true,
       };
