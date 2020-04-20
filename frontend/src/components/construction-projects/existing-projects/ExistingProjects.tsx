@@ -9,6 +9,7 @@ import { IRootState } from '../../../store/reducers';
 import ConstructionProjectsActions from '../../../store/actions/construction-projects';
 
 import './ExistingProjects.scss';
+import Badge from 'react-bootstrap/Badge';
 
 function ExistingProjects() {
   const history = useHistory();
@@ -40,6 +41,9 @@ function ExistingProjects() {
             {project.name}
             {project.description ? ` - ${project.description}` : ''}
             {project.location ? ` - ${project.location}` : ''}
+            <Badge className="cart-label" pill variant="secondary">
+              {project.cart?.length} items in cart
+            </Badge>
             <TiDeleteOutline
               size={'2em'}
               className="float-right delete-icon"
