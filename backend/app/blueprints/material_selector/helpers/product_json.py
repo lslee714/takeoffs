@@ -19,6 +19,13 @@ class ProductJson:
         }
 
     @classmethod
+    def from_material(cls, material):
+        """Returns an instance of this class from a project Material record"""
+        # TODO api would be nice to have a multi id get call. Or i could persist the data in my database, but that seems redudnant
+        res = MaterialController().get_product(material.api_id)
+        return cls(res)
+
+    @classmethod
     def get_products(cls, categoryName=''):
         controller = MaterialController()
         productResponse = controller.get_products(categoryName)

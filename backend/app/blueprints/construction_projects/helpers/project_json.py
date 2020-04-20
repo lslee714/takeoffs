@@ -2,6 +2,7 @@ from flask import url_for
 
 from construction_projects import ProjectController
 
+from ...material_selector.helpers import ProductJson
 
 class ProjectJson:
     def __init__(self, project):
@@ -19,8 +20,16 @@ class ProjectJson:
             'name': self.project.name,
             'description': self.project.description or '',
             'location': self.project.location or '',
-            'links': links
+            'links': links,
+            'cart': self.get_materials()
         }
+    
+    @classmethod
+    def get_all_projects_as_json(cls, session):
+        """Helper to pre hook this into db connector"""
+        projects = ProjectController(session).get_projects()
+        return [cls(p)() for p in projects]
+
     
     def create_links(self):
         """Return link map for the object"""
@@ -30,8 +39,7 @@ class ProjectJson:
             'saveCart': url_for('construction_projects.save_project_materials', projectId=self.project.id, _external=True) 
         }
 
-    @classmethod
-    def get_all_projects_as_json(cls, session):
-        """Helper to pre hook this into db connector"""
-        projects = ProjectController(session).get_projects()
-        return [cls(p)() for p in projects]
+    def get_materials(self):
+        """Return the project's materials(cart) for json"""
+        materials = self.project.materials
+        return [ProductJson.from_material(material)() for material in materials]

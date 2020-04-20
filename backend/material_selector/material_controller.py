@@ -31,3 +31,10 @@ class MaterialController:
         responseJson = requests.get(url, queryParams).json()
         productsKey = 'hydra:member'
         return responseJson[productsKey]
+
+    def get_product(self, productId):
+        url = f'{self.API_URL}/products/{productId}'
+        responseJson = requests.get(url).json()
+        return responseJson
+
+        
