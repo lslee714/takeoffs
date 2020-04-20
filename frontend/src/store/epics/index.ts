@@ -4,6 +4,7 @@ import {
   getProjectsEpic,
   postProjectEpic,
   deleteProjectEpic,
+  saveProjectEpic,
 } from './ConstructionProjectsEpics';
 import { getCategoriesEpic, getProductsEpic } from './MaterialSelectorEpics';
 
@@ -11,6 +12,7 @@ export const rootEpic = combineEpics(
   getProjectsEpic,
   postProjectEpic,
   deleteProjectEpic,
+  saveProjectEpic,
   getCategoriesEpic,
   getProductsEpic
 );

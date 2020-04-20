@@ -23,7 +23,7 @@ const ProjectInfo: React.FC<{ project: IConstructionProject }> = (props: {
         <AdditionalProjectInfo />
       </div>
       <div className="padless">
-        <ProjectTabs />
+        <ProjectTabs project={props.project} />
       </div>
     </Jumbotron>
   );

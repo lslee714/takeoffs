@@ -1,5 +1,6 @@
 import { Epic } from 'redux-observable';
 import { of } from 'rxjs';
+import { AjaxResponse } from 'rxjs/ajax';
 import {
   switchMap,
   map,
@@ -12,7 +13,6 @@ import { isOfType } from 'typesafe-actions';
 import ConstructionProjectActions from '../actions/construction-projects';
 import { IConstructionProject } from '../../models/ConstructionProject';
 import ConstructionProjectsService from '../../services/ConstructionProjectsService';
-import { AjaxResponse } from 'rxjs/ajax';
 
 export const getProjectsEpic: Epic<
   ConstructionProjectActions.ProjectActions,
@@ -71,6 +71,28 @@ export const deleteProjectEpic: Epic<
     ),
     switchMap((action: ConstructionProjectActions.IDeleteProjectAction) =>
       ConstructionProjectsService.deleteProject(action.payload.link).pipe(
+        ignoreElements(),
+        catchError((err) => {
+          console.log('err', err);
+          return of(ConstructionProjectActions.resetIsLoading());
+        })
+      )
+    )
+  );
+
+export const saveProjectEpic: Epic<
+  ConstructionProjectActions.ProjectActions,
+  ConstructionProjectActions.ProjectActions,
+  // Should be IRootState but typescript complaining..
+  any
+> = (action$, state$) =>
+  action$.pipe(
+    filter(isOfType(ConstructionProjectActions.ProjectActionTypes.SaveProject)),
+    switchMap((action: ConstructionProjectActions.ISaveProjectAction) =>
+      ConstructionProjectsService.saveProject(
+        action.payload.saveLink,
+        action.payload.cart
+      ).pipe(
         ignoreElements(),
         catchError((err) => {
           console.log('err', err);

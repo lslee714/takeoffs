@@ -35,7 +35,7 @@ export interface IDeleteProjectAction {
 export interface ISaveProjectAction {
   type: ProjectActionTypes.SaveProject;
   payload: {
-    project: ConstructionProject.IConstructionProject;
+    saveLink: string;
     cart: { [productId: string]: number };
   };
 }
@@ -80,9 +80,20 @@ export function deleteProject(payload: {
   };
 }
 
+export function saveProject(payload: {
+  saveLink: string;
+  cart: { [productId: string]: number };
+}): ISaveProjectAction {
+  return {
+    type: ProjectActionTypes.SaveProject,
+    payload,
+  };
+}
+
 export type ProjectActions =
   | IGetProjectsAction
   | ILoadProjectsAction
   | IResetIsLoadingAction
   | ICreateProjectAction
-  | IDeleteProjectAction;
+  | IDeleteProjectAction
+  | ISaveProjectAction;

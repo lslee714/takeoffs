@@ -1,22 +1,31 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { ConstructionProject } from '../../../models';
 import { IRootState } from '../../../store/reducers';
+import ConstructionProjectActions from '../../../store/actions/construction-projects';
 
 import './OrderProject.scss';
 
-const OrderProject = () => {
+const OrderProject = (props: {
+  project: ConstructionProject.IConstructionProject;
+}) => {
+  const project = props.project;
+  const dispatch: Dispatch<any> = useDispatch();
+  let cart: {
+    [productId: string]: number;
+  };
   let itemsInCart = 0;
+
   const projectTotal = useSelector((state: IRootState) => {
     let total = 0;
-    for (const [productId, quantity] of Object.entries(
-      state.materialSelector.cart.added
-    )) {
+    cart = state.materialSelector.cart.added;
+    for (const [productId, quantity] of Object.entries(cart)) {
       itemsInCart += 1;
       const productTotal =
         state.materialSelector.products.byId[productId].price * quantity;
@@ -37,7 +46,21 @@ const OrderProject = () => {
           </Badge>
         </Col>
         <Col>
-          <Button variant="primary" className="save">
+          <Button
+            variant="primary"
+            className="save"
+            onClick={() => {
+              console.log('Clicking');
+              if (project.links?.save) {
+                dispatch(
+                  ConstructionProjectActions.saveProject({
+                    saveLink: project.links.save,
+                    cart,
+                  })
+                );
+              }
+            }}
+          >
             Save Project
           </Button>
           <Button variant="success" disabled={itemsInCart === 0}>

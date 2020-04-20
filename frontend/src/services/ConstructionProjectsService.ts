@@ -27,6 +27,20 @@ export class ConstructionProjectsService {
       method: 'DELETE',
     });
   }
+
+  saveProject(
+    link: string,
+    cart: { [productId: string]: number }
+  ): Observable<AjaxResponse> {
+    return ajax({
+      url: link,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: cart,
+    });
+  }
 }
 
 // Create a singleton of the service
