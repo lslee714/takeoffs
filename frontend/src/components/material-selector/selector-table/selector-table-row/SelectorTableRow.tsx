@@ -25,13 +25,9 @@ const SelectorTableRow = (props: any) => {
   }, [category]);
 
   if (products) {
-    return (
-      <div className="embedded-row">
-        <CategoryProducts products={products} />
-      </div>
-    );
+    return <CategoryProducts products={products} />;
   } else {
-    return <div className="embedded-row" />;
+    return <div />;
   }
 };
 

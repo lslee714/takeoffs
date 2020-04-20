@@ -10,4 +10,5 @@ export interface IMaterialProduct {
   imageUrl: string;
   price: number;
   currency: string;
+  unit: string;
 }
