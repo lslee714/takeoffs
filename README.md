@@ -15,7 +15,7 @@ Create an application allowing the user to:
 - Sound architecture
 - React w/ Typescript UI
 - Flask backend
-- Relational Database, hopefully Postgres (punting until I have time to set it up in the cloud)
+- Relational Database, hopefully Postgres (using sqlite until I have time to set postgres up in the cloud)
 
 #### Project retro notes:
 
@@ -28,7 +28,7 @@ Create an application allowing the user to:
 - I used gunicorn to serve the flask backend; it's also widely accepted as a Python WSGI HTTP server and I'm familiar with it.
 - I added a redux-observable layer for my UI state management; it's a pretty heavy, all purpose Redux tool for React that allows me to use rxjs with Observables, which is where Javascript is heading more and more towards! More info in frontend/src/store
 - I don't follow snake_case for my local variables in Python; I prefer camelCase for it, so those are intentional. But generally followed PEP8 otherwise.
-- I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which would make the app a little more rigid.
+- I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Flask framework/API layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
 - There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
 - All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend.
@@ -52,7 +52,8 @@ Create an application allowing the user to:
 
 - How to set up app as pure "production-ready-ish" microservices, separating client/backend.
 - Using functional components with hooks in React with Typescript, still a lot to learn there, exciting!
-- A lot about the existing Takeoffs API, though still some confusion as alluded to above. Also, \$ should be ints!
+- Setting up redux-observable with Typescript.
+- A lot about the existing Takeoffs API! Though have some confusion as alluded to above.
 - Another example: why doesn't a product have a storeId? Rather, it has a storeProductId...but there's no storeProduct API?
 - Another, the get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
 - Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (silence, dont let it block other requests), but ...time (for now!). For example, I could red out the row if there's no result found and slowly animate it away.
@@ -108,15 +109,24 @@ $ source env.sh (or file from step #2)
 $ alembic upgrade heads
 ```
 
+#### For tests
+
+```
+$ source env.sh #or whatever env file from above
+
+# runs unittest in app context for Flask context-based unittests
+$ python run_app_tests.py
+
+# or.. (these will end up w/ the aforementioned flask-based tests failing)
+$ python -m unittest
+```
+
 ### Running the application
 
 #### For dev mode
 
 ```
-$ source env.sh (If environment not loaded)
-*$ python run_app_tests.py
-(runs unittest in app context for Flask context-based unittests) OR $ python -m unittest (which will end up w/ the aforementioned failing.)
-
+$ source env.sh #or whatever env file from above
 $ python run.py
 ```
 

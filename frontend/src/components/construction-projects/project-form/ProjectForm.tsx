@@ -25,6 +25,7 @@ function ProjectForm() {
           <Form.Label>Project Name</Form.Label>
           <Form.Control
             type="text"
+            required
             placeholder="What's the name of the project?"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const val = e.target.value;
@@ -74,6 +75,7 @@ function ProjectForm() {
           className="float-right"
           variant="primary"
           type="button"
+          disabled={!project.name}
           onClick={() =>
             dispatch(ConstructionProjectsActions.createProject(project))
           }

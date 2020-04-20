@@ -17,6 +17,7 @@ test.db
 
 # auto generated cache files
 __pycache__
+*.pyc
 
 #environment file
 env.sh
