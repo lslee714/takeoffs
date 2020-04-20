@@ -1,18 +1,18 @@
 import MaterialSelectorActions from '../actions/material-selector';
-import { IMaterialGroup } from '../../models/MaterialSelector';
+import { IMaterialCategory } from '../../models/MaterialSelector';
 
 export interface IMaterialSelectorState {
   isLoading: boolean;
   categories: {
     byId: {
-      [id: number]: IMaterialGroup;
+      [id: number]: IMaterialCategory;
     };
     sorted: number[];
     total: number;
   };
   subCategories: {
     byId: {
-      [id: number]: IMaterialGroup;
+      [id: number]: IMaterialCategory;
     };
     sorted: number[];
   };

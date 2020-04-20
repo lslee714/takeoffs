@@ -3,7 +3,8 @@ import DataTable from 'react-data-table-component';
 import { useSelector, useDispatch } from 'react-redux';
 
 import DataTableHelper from './DataTableHelper';
-import { IMaterialGroup } from '../../../models/MaterialSelector';
+import { IMaterialCategory } from '../../../models/MaterialSelector';
+import SelectorTableRow from './selector-table-row/SelectorTableRow';
 import MaterialSelectorActions from '../../../store/actions/material-selector';
 import { IRootState } from '../../../store/reducers';
 
@@ -19,10 +20,10 @@ const SelectorTable = () => {
 
   const columns = DataTableHelper.getColumns();
   const styles = DataTableHelper.getStyles();
-  const existingCategories: IMaterialGroup[] = useSelector(
+  const existingCategories: IMaterialCategory[] = useSelector(
     (state: IRootState) => {
       const materialData = state.materialSelector;
-      const categories: IMaterialGroup[] = [];
+      const categories: IMaterialCategory[] = [];
       materialData.categories.sorted.forEach((id: number) =>
         categories.push(materialData.categories.byId[id])
       );
@@ -39,6 +40,8 @@ const SelectorTable = () => {
       pagination
       paginationTotalRows={totalRows}
       paginationServer
+      expandableRows
+      expandableRowsComponent={<SelectorTableRow />}
       onChangeRowsPerPage={(newPerPage, page) => {
         setPerPage(newPerPage);
         return dispatch(

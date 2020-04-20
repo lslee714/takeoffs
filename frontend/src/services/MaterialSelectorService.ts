@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { IMaterialGroup } from '../models/MaterialSelector';
+import { IMaterialCategory } from '../models/MaterialSelector';
 
 export interface IMaterialCategoriesResponse {
-  categories: IMaterialGroup[];
+  categories: IMaterialCategory[];
   total: number;
 }
 

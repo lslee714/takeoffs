@@ -1,4 +1,4 @@
-export interface IMaterialGroup {
+export interface IMaterialCategory {
   id: number;
   name: string;
 }

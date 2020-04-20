@@ -36,7 +36,8 @@ Create an application allowing the user to:
 - Probably should separate the one backend app blueprints into two separate microservices; that way, if one goes down, the other doesnt have to necessarily.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
 - No frontend form validation
-- Testing lacking
+- Testing lacking, especially in the frontend (new framework (jest vs jasmine) so got a little time concerned over that too).
+- No integration testing. I would and have set up cypress (using fixtures) for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
 - Little scss methodology, mostly setting values empirically
 
