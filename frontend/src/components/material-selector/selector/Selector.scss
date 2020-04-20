@@ -3,5 +3,6 @@
 .main {
   padding: $material-padding;
   background-color: $takeoffs-gray;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
 }

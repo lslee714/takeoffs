@@ -1,6 +1,6 @@
 import { Epic } from 'redux-observable';
 import { of } from 'rxjs';
-import { switchMap, map, catchError, filter } from 'rxjs/operators';
+import { switchMap, map, catchError, filter, mergeMap } from 'rxjs/operators';
 import { isOfType } from 'typesafe-actions';
 
 import MaterialSelectorActions from '../actions/material-selector';
@@ -46,10 +46,9 @@ export const getProductsEpic: Epic<
     ),
     switchMap((action: MaterialSelectorActions.IGetProductsAction) =>
       MaterialSelectorService.getProducts(action.payload.category).pipe(
-        map((res: IMaterialProduct[]) => {
-          return MaterialSelectorActions.loadProducts(
-            action.payload.category,
-            res
+        mergeMap((res: IMaterialProduct[]) => {
+          return of(
+            MaterialSelectorActions.loadProducts(action.payload.category, res)
           );
         }),
         catchError((err) => {

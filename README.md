@@ -46,7 +46,8 @@ Create an application allowing the user to:
 
 - Setting up app as pure "producution-ready-ish" microservices, separating client/backend
 - Using function components with hooks in React with typescript, still a lot to learn there, exciting!
-- The get products API doesnt return the same object every time :curious:
+- The get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
+- Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (just assuming it's empty), but ... time (for now!)
 
 ## TL;DR
 
