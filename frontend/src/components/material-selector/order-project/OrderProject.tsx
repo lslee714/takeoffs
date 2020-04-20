@@ -51,10 +51,10 @@ const OrderProject = (props: {
             className="save"
             onClick={() => {
               console.log('Clicking');
-              if (project.links?.save) {
+              if (project.links?.saveCart) {
                 dispatch(
-                  ConstructionProjectActions.saveProject({
-                    saveLink: project.links.save,
+                  ConstructionProjectActions.saveProjectCart({
+                    saveCartLink: project.links.saveCart,
                     cart,
                   })
                 );

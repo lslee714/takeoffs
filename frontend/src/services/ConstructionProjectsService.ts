@@ -28,7 +28,7 @@ export class ConstructionProjectsService {
     });
   }
 
-  saveProject(
+  saveProjectCart(
     link: string,
     cart: { [productId: string]: number }
   ): Observable<AjaxResponse> {

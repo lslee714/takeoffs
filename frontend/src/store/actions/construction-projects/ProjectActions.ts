@@ -6,7 +6,7 @@ export enum ProjectActionTypes {
   ResetIsLoading = 'Projects Reset Is Loading',
   CreateProject = 'Create Project',
   DeleteProject = 'Delete Project',
-  SaveProject = 'Save Project',
+  SaveProjectCart = 'Save Project Cart',
 }
 
 export interface IGetProjectsAction {
@@ -32,10 +32,10 @@ export interface IDeleteProjectAction {
   payload: { id: number; link: string };
 }
 
-export interface ISaveProjectAction {
-  type: ProjectActionTypes.SaveProject;
+export interface ISaveProjectCartAction {
+  type: ProjectActionTypes.SaveProjectCart;
   payload: {
-    saveLink: string;
+    saveCartLink: string;
     cart: { [productId: string]: number };
   };
 }
@@ -80,12 +80,12 @@ export function deleteProject(payload: {
   };
 }
 
-export function saveProject(payload: {
-  saveLink: string;
+export function saveProjectCart(payload: {
+  saveCartLink: string;
   cart: { [productId: string]: number };
-}): ISaveProjectAction {
+}): ISaveProjectCartAction {
   return {
-    type: ProjectActionTypes.SaveProject,
+    type: ProjectActionTypes.SaveProjectCart,
     payload,
   };
 }
@@ -96,4 +96,4 @@ export type ProjectActions =
   | IResetIsLoadingAction
   | ICreateProjectAction
   | IDeleteProjectAction
-  | ISaveProjectAction;
+  | ISaveProjectCartAction;

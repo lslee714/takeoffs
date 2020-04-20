@@ -87,10 +87,12 @@ export const saveProjectEpic: Epic<
   any
 > = (action$, state$) =>
   action$.pipe(
-    filter(isOfType(ConstructionProjectActions.ProjectActionTypes.SaveProject)),
-    switchMap((action: ConstructionProjectActions.ISaveProjectAction) =>
-      ConstructionProjectsService.saveProject(
-        action.payload.saveLink,
+    filter(
+      isOfType(ConstructionProjectActions.ProjectActionTypes.SaveProjectCart)
+    ),
+    switchMap((action: ConstructionProjectActions.ISaveProjectCartAction) =>
+      ConstructionProjectsService.saveProjectCart(
+        action.payload.saveCartLink,
         action.payload.cart
       ).pipe(
         ignoreElements(),
