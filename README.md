@@ -71,10 +71,17 @@ To run locally with production builds:
 
 To serve locally, inside root project directory, run
 
+#### For tests
+
+```
+// in the frontend directory
+npm test
+```
+
 #### For dev mode
 
 ```
-//In the frontend/ directory
+//In the frontend directory
 npm start
 ```
 
