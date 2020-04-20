@@ -29,7 +29,8 @@ ADDITIONAL_PROJECT_ARGS = { schemaKey: 'construction_projects' }
 
 
 def upgrade():
-    if check_is_sqlite(): 
+    isSqlite = check_is_sqlite()
+    if isSqlite: 
         ADDITIONAL_PROJECT_ARGS.pop(schemaKey)
     else: 
         op.create_schema(ADDITIONAL_PROJECT_ARGS[schemaKey])
@@ -44,13 +45,14 @@ def upgrade():
         **ADDITIONAL_PROJECT_ARGS
     )
 
+    projectIdSqlPath = "project.id" if isSqlite else 'construction_projects.project.id'
+
     op.create_table('upload',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('filepath', sa.String(), nullable=True),
         sa.Column('source_filename', sa.String(), nullable=False),
         sa.Column('ts_uploaded', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-        sa.Column('id_project', sa.Integer(), nullable=False),
-        sa.ForeignKeyConstraint(['id_project'], ['project.id'], ),
+        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath), nullable=False),
         sa.PrimaryKeyConstraint('id'),
         sa.UniqueConstraint('filepath'),
         **ADDITIONAL_PROJECT_ARGS
@@ -59,10 +61,9 @@ def upgrade():
     op.create_table('material',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('api_id', sa.String(), nullable=True),
-        sa.Column('id_project', sa.String(), nullable=False),
+        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath), nullable=False),
         sa.Column('quantity', sa.Integer(), nullable=False),
         sa.Column('ts_created', sa.DateTime(), nullable=False),
-        sa.ForeignKeyConstraint(['id_project'], ['project.id'], ),
         sa.PrimaryKeyConstraint('id'),
         sa.UniqueConstraint('api_id'),
         **ADDITIONAL_PROJECT_ARGS
