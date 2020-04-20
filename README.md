@@ -15,7 +15,7 @@ Create an application allowing the user to:
 - Sound architecture
 - React w/ Typescript UI
 - Flask backend
-- Relational Database, hopefully Postgres (using sqlite until I have time to set postgres up in the cloud)
+- Relational Database. Sqlite still used in local build, but cloud sql w/ postgres is now up! Trying to get this going all hooked in up there..
 
 #### Project retro notes:
 
