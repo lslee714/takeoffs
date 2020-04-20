@@ -8,7 +8,7 @@ Create an application allowing the user to:
 
 - Create a construction project and add details like name, description, location and pictures
 - Within a construction project, allow the user to select materials that utilizes the Takeoffs materials API
-- Material selection should be feature rich, and it should include things like: searching, updating quantities, add/remove from cart
+- Material selection should be feature rich, and it should include things like updating quantities, add/remove from cart
 
 #### Project Technical Requirements:
 
