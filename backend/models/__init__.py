@@ -1,2 +1,2 @@
-from .construction_projects import Upload, Project
+from .construction_projects import Upload, Project, Material
 
