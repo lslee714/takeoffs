@@ -1,8 +1,14 @@
 import { IMaterialCategoriesResponse } from '../../../services/MaterialSelectorService';
+import {
+  IMaterialProduct,
+  IMaterialCategory,
+} from '../../../models/MaterialSelector';
 
 export enum MaterialSelectorActionTypes {
   GetCategories = 'Get Categories',
   LoadCategories = 'Load Categories',
+  GetProducts = 'Get Products',
+  LoadProducts = 'Load Products',
   ResetIsLoading = 'Is Loading',
 }
 
@@ -14,6 +20,16 @@ export interface IGetCategoriesAction {
 export interface ILoadCategoriesAction {
   type: MaterialSelectorActionTypes.LoadCategories;
   payload: IMaterialCategoriesResponse;
+}
+
+export interface IGetProductsAction {
+  type: MaterialSelectorActionTypes.GetProducts;
+  payload: { category: IMaterialCategory };
+}
+
+export interface ILoadProductsAction {
+  type: MaterialSelectorActionTypes.LoadProducts;
+  payload: { category: IMaterialCategory; products: IMaterialProduct[] };
 }
 
 export interface IResetIsLoadingAction {
@@ -42,6 +58,23 @@ export function loadCategories(
   };
 }
 
+export function getProducts(category: IMaterialCategory): IGetProductsAction {
+  return {
+    type: MaterialSelectorActionTypes.GetProducts,
+    payload: { category },
+  };
+}
+
+export function loadProducts(
+  category: IMaterialCategory,
+  products: IMaterialProduct[]
+): ILoadProductsAction {
+  return {
+    type: MaterialSelectorActionTypes.LoadProducts,
+    payload: { category, products },
+  };
+}
+
 export function resetIsLoading(): IResetIsLoadingAction {
   return {
     type: MaterialSelectorActionTypes.ResetIsLoading,
@@ -51,4 +84,6 @@ export function resetIsLoading(): IResetIsLoadingAction {
 export type MaterialSelectorActions =
   | IGetCategoriesAction
   | ILoadCategoriesAction
-  | IResetIsLoadingAction;
+  | IResetIsLoadingAction
+  | IGetProductsAction
+  | ILoadProductsAction;

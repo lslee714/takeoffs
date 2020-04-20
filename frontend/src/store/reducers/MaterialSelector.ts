@@ -1,5 +1,8 @@
 import MaterialSelectorActions from '../actions/material-selector';
-import { IMaterialCategory } from '../../models/MaterialSelector';
+import {
+  IMaterialCategory,
+  IMaterialProduct,
+} from '../../models/MaterialSelector';
 
 export interface IMaterialSelectorState {
   isLoading: boolean;
@@ -10,9 +13,12 @@ export interface IMaterialSelectorState {
     sorted: number[];
     total: number;
   };
-  subCategories: {
+  products: {
+    byCategoryId: {
+      [categoryId: number]: IMaterialProduct[];
+    };
     byId: {
-      [id: number]: IMaterialCategory;
+      [id: number]: IMaterialProduct;
     };
     sorted: number[];
   };
@@ -25,7 +31,8 @@ export const initialState: IMaterialSelectorState = {
     sorted: [],
     total: 0,
   },
-  subCategories: {
+  products: {
+    byCategoryId: {},
     byId: {},
     sorted: [],
   },
@@ -43,7 +50,7 @@ export const materialSelectorReducer = (
         categories: {
           sorted: [],
           byId: {},
-          total: 0,
+          ...state.categories,
         },
         isLoading: true,
       };
@@ -59,6 +66,24 @@ export const materialSelectorReducer = (
       categories.forEach((category: any) => {
         newState.categories.byId[category.id] = category;
         newState.categories.sorted.push(category.id);
+      });
+      return newState;
+
+    case MaterialSelectorActions.MaterialSelectorActionTypes.LoadProducts:
+      const products = action.payload.products;
+      newState = {
+        ...state,
+        products: {
+          ...state.products,
+          byCategoryId: {
+            ...state.products.byCategoryId,
+            [action.payload.category.id]: products,
+          },
+        },
+      };
+      products.forEach((product: IMaterialProduct) => {
+        newState.products.byId[product.id] = product;
+        newState.products.sorted.push(product.id);
       });
       return newState;
 

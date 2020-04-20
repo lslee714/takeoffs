@@ -41,6 +41,7 @@ const SelectorTable = () => {
       paginationTotalRows={totalRows}
       paginationServer
       expandableRows
+      expandOnRowClicked
       expandableRowsComponent={<SelectorTableRow />}
       onChangeRowsPerPage={(newPerPage, page) => {
         setPerPage(newPerPage);

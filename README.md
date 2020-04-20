@@ -30,6 +30,7 @@ Create an application allowing the user to:
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
+- No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose)
 - I want to set up kubernetes with it, ambitiously!
 - Very happy pathed..

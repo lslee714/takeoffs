@@ -7,6 +7,7 @@ import MaterialSelectorActions from '../actions/material-selector';
 import MaterialSelectorService, {
   IMaterialCategoriesResponse,
 } from '../../services/MaterialSelectorService';
+import { IMaterialProduct } from '../../models/MaterialSelector';
 
 export const getCategoriesEpic: Epic<
   MaterialSelectorActions.MaterialSelectorActions,
@@ -28,6 +29,34 @@ export const getCategoriesEpic: Epic<
         catchError((err) => {
           console.log('err', err);
           return of(MaterialSelectorActions.resetIsLoading());
+        })
+      )
+    )
+  );
+
+export const getProductsEpic: Epic<
+  MaterialSelectorActions.MaterialSelectorActions,
+  MaterialSelectorActions.MaterialSelectorActions,
+  // Should be IRootState but typescript complaining..
+  any
+> = (action$, state$) =>
+  action$.pipe(
+    filter(
+      isOfType(MaterialSelectorActions.MaterialSelectorActionTypes.GetProducts)
+    ),
+    switchMap((action: MaterialSelectorActions.IGetProductsAction) =>
+      MaterialSelectorService.getProducts(action.payload.category).pipe(
+        map((res: IMaterialProduct[]) => {
+          return MaterialSelectorActions.loadProducts(
+            action.payload.category,
+            res
+          );
+        }),
+        catchError((err) => {
+          console.log('err', err);
+          return of(
+            MaterialSelectorActions.loadProducts(action.payload.category, [])
+          );
         })
       )
     )
