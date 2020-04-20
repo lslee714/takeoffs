@@ -70,7 +70,11 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table('upload')
-    op.drop_table('project')
+    if check_is_sqlite(): 
+        ADDITIONAL_PROJECT_ARGS.pop(schemaKey)
+    op.drop_table('material', **ADDITIONAL_PROJECT_ARGS)
+    op.drop_table('upload', **ADDITIONAL_PROJECT_ARGS)
+    op.drop_table('project', **ADDITIONAL_PROJECT_ARGS)
+    
     if not check_is_sqlite():
         op.drop_schema(ADDITIONAL_PROJECT_ARGS[schemaKey])
