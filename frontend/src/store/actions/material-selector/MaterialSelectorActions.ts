@@ -10,7 +10,6 @@ export enum MaterialSelectorActionTypes {
   ShowInCart = 'Show In Cart',
   UnshowInCart = 'Unshow In Cart',
   AddToCart = 'Add To Cart',
-  SaveCart = 'Save Cart',
 }
 
 export interface IGetCategoriesAction {
@@ -59,13 +58,6 @@ export interface IUnshowInCartAction {
   type: MaterialSelectorActionTypes.UnshowInCart;
   payload: {
     productId: string;
-  };
-}
-
-export interface ISaveCart {
-  type: MaterialSelectorActionTypes.SaveCart;
-  payload: {
-    saveUrl: string;
   };
 }
 
@@ -147,13 +139,6 @@ export function unshowInCart(productId: string): IUnshowInCartAction {
   };
 }
 
-export function saveCart(saveUrl: string): ISaveCart {
-  return {
-    type: MaterialSelectorActionTypes.SaveCart,
-    payload: { saveUrl },
-  };
-}
-
 export type MaterialSelectorActions =
   | IGetCategoriesAction
   | ILoadCategoriesAction
@@ -162,5 +147,4 @@ export type MaterialSelectorActions =
   | ILoadProductsAction
   | IShowInCartAction
   | IAddToCartAction
-  | IUnshowInCartAction
-  | ISaveCart;
+  | IUnshowInCartAction;
