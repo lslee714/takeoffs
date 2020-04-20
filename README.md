@@ -4,7 +4,7 @@
 
 ### Abstract
 
-This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn serving it in the microservice.
+This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice.
 
 The database can be any relational database, though the current run.sh file (deploys production locally) uses an in memory (to the container) sqlite database currently. Work is being done to host it on GCP. Below is available information detailing the state of the project.
 
@@ -52,7 +52,7 @@ Create an application allowing the user to:
 - I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Flask framework/API layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
 - There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
-- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend.
+- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend. The biggest/not production appropriate problems are the hardcoded API urls for the frontend and backend (to hook into Takeoff's material API). Deployment will/should find better solutions for this.
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
