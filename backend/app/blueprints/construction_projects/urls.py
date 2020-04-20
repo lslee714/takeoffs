@@ -32,11 +32,21 @@ def register(blueprint):
     @blueprint.route('/<projectId>', methods=['DELETE'])
     @cross_origin()
     def delete_project(projectId):
-        """Delete a project and return the remainder"""
+        """Delete a project and return the rest"""
         projectController = ProjectController(session)
         projectController.delete_project(projectId)
         session.commit()
         projectJsons = ProjectJson.get_all_projects_as_json(session)
         return jsonify(projectJsons)
     
-            
+    @blueprint.route('/<projectId>', methods=['PATCH'])
+    @cross_origin()
+    def save_project(projectId):
+        """Placeholder to allow patching a project"""
+        return jsonify({})
+    
+    @blueprint.route('/<projectId>/materials', methods=['POST'])
+    @cross_origin()
+    def save_project_materials(projectId):
+        """Create a project's materials (cart)"""
+        return jsonify({})

@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer, String, DateTime, func, ForeignKey
+from sqlalchemy.orm import relationship
 
 from models.base import Base
 
@@ -17,4 +18,4 @@ class Material(Base):
     quantity = Column(Integer, nullable=False)
     ts_created = Column(DateTime, nullable=False, default=func.now())
     
-    
+    project = relationship(Project, backref='materials')

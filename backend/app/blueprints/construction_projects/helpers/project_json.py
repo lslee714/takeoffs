@@ -25,7 +25,9 @@ class ProjectJson:
     def create_links(self):
         """Return link map for the object"""
         return {
-            'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True)
+            'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True),
+            'save': url_for('construction_projects.save_project', projectId=self.project.id, _external=True),
+            'saveCart': url_for('construction_projects.save_project_materials', projectId=self.project.id, _external=True) 
         }
 
     @classmethod
