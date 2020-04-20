@@ -23,4 +23,10 @@ class MaterialController:
         totalKey = 'hydra:totalItems'
         return responseJson[totalKey]
     
-    
+    def get_products(self, categoryName=''):
+        url = f'{self.API_URL}/products'
+        queryParams = {}
+        if(categoryName):
+            queryParams['categoryName'] = categoryName
+        responseJson = requests.get(url, queryParams).json()
+        return responseJson
