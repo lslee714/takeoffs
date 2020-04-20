@@ -22,7 +22,7 @@ Create an application allowing the user to:
 - Currently, the project allows the user to:
 
   - Create a project or delete an existing one
-  - With a project, view and select products from various categories in the material selector which includes backend pagination
+  - Within project, view and select products from various categories in the material selector which includes backend pagination.
   - Within the cart preview, adjust the quantity and add to the project or remove it from preview
   - On revisiting the project view, view the number of items in the project
 
