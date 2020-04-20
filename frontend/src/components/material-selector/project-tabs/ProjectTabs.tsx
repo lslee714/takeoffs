@@ -3,6 +3,8 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { FaShoppingCart } from 'react-icons/fa';
 
+import OrderProject from '../order-project/OrderProject';
+
 import './ProjectTabs.scss';
 
 const ProjectTabs = () => {
@@ -19,7 +21,7 @@ const ProjectTabs = () => {
           </span>
         }
       >
-        Market place component goes here
+        <OrderProject />
       </Tab>
     </Tabs>
   );

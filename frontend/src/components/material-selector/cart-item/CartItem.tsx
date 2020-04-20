@@ -26,7 +26,7 @@ const CartItem = (props: { product: IMaterialProduct }) => {
         )}
         <MdRemoveCircle
           className="remove"
-          onClick={(e) =>
+          onClick={() =>
             dispatch(MaterialSelectorActions.unshowInCart(product.id))
           }
         />
@@ -53,7 +53,14 @@ const CartItem = (props: { product: IMaterialProduct }) => {
             }
           }
         />
-        <Button variant="primary" className="add-item float-right">
+        <Button
+          variant="primary"
+          className="add-item float-right"
+          onClick={() => {
+            dispatch(MaterialSelectorActions.unshowInCart(product.id));
+            dispatch(MaterialSelectorActions.addToCart(product.id, quantity));
+          }}
+        >
           Add
         </Button>
       </footer>

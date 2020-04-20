@@ -50,6 +50,7 @@ export interface IAddToCartAction {
   type: MaterialSelectorActionTypes.AddToCart;
   payload: {
     productId: string;
+    quantity: number;
   };
 }
 
@@ -114,10 +115,16 @@ export function showInCart(product: IMaterialProduct): IShowInCartAction {
   };
 }
 
-export function addToCart(productId: string): IAddToCartAction {
+export function addToCart(
+  productId: string,
+  quantity: number
+): IAddToCartAction {
   return {
     type: MaterialSelectorActionTypes.AddToCart,
-    payload: { productId },
+    payload: {
+      productId,
+      quantity,
+    },
   };
 }
 

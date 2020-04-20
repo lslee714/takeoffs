@@ -52,6 +52,7 @@ export const materialSelectorReducer = (
   state: IMaterialSelectorState = initialState,
   action: MaterialSelectorActions.MaterialSelectorActions
 ): IMaterialSelectorState => {
+  let productId: string;
   let newState: IMaterialSelectorState;
   switch (action.type) {
     case MaterialSelectorActions.MaterialSelectorActionTypes.GetCategories:
@@ -112,13 +113,26 @@ export const materialSelectorReducer = (
       return newState;
 
     case MaterialSelectorActions.MaterialSelectorActionTypes.UnshowInCart:
-      const productId = action.payload.productId;
+      productId = action.payload.productId;
       newState = {
         ...state,
       };
       const idx = newState.cart.shown.indexOf(productId);
       newState.cart.shown.splice(idx, 1);
       return newState;
+
+    case MaterialSelectorActions.MaterialSelectorActionTypes.AddToCart:
+      productId = action.payload.productId;
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          added: {
+            ...state.cart.added,
+            [productId]: action.payload.quantity,
+          },
+        },
+      };
 
     default:
       return state;

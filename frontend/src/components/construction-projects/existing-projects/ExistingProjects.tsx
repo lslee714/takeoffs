@@ -40,9 +40,10 @@ function ExistingProjects() {
             {project.name}
             {project.description ? ` - ${project.description}` : ''}
             {project.location ? ` - ${project.location}` : ''}
-            <a
-              className="float-right"
-              onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
+            <TiDeleteOutline
+              size={'2em'}
+              className="float-right delete-icon"
+              onClick={(e: React.MouseEvent<SVGElement, MouseEvent>) => {
                 e.stopPropagation();
                 // Should always have it at this point, but compiler isnt smart enough
                 if (project.links) {
@@ -54,12 +55,7 @@ function ExistingProjects() {
                   );
                 }
               }}
-            >
-              <TiDeleteOutline
-                size={'2em'}
-                className="float-right delete-icon"
-              />
-            </a>
+            />
           </ListGroup.Item>
         ))}
       </ListGroup>
