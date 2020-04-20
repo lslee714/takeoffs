@@ -2,6 +2,12 @@
 
 ## Project Details
 
+### Abstract
+
+This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn serving it in the microservice.
+
+The database can be any relational database, though the current run.sh file (deploys production locally) uses an in memory (to the container) sqlite database currently. Work is being done to host it on GCP. Below is available information detailing the state of the project.
+
 #### Project Epic:
 
 Create an application allowing the user to:
