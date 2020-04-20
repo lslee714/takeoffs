@@ -19,6 +19,20 @@ Create an application allowing the user to:
 
 #### Project retro notes:
 
+- Currently, the project allows the user to:
+
+  - Create a project
+  - With a project, select products from a various categories
+  - Within the cart preview, adjust the quantity and add to the project or remove it from preview
+  - On revisiting the project view, view the number of items added to the project
+
+- Some other features I didn't get around to due to time:
+
+  - View what is in the cart. Given the flow of the current state, specifically not storing all the product API result details in the database, this entails either: a) store the product API details in the database or b) given the API id I do store, fetch those products when a project is viewed.
+  - The location based searching. More below on this.
+  - Editting the information for a project.
+  - Updating the cart for a project rather than re-writing each time.
+
 - Not knowing the data very well, I did my best to match the story of "let users create projects and allow adding items to it" with the UX recommendations/wireframes. I realize this wasn't the full ask of the challenge/requirement, but I took the "fill in the requirements yourself" part in full stride, perhaps (but hopefully not) too far :D
 - I did have a bunch of questions that came up as I delved deeper; however, given the time constraints and it being the weekend, I decided to fill the blanks in myself. I hope that wasn't to my detriment.
 - I chose a mono-repo (but multi-app) approach, this buys me a couple of things: a) API compatibility; and b) easy developer experience for a small one-man team.
@@ -35,23 +49,23 @@ Create an application allowing the user to:
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
+- I punted (so far) on the location/searching aspect because when playing with the API, I had difficulty getting any results to return given productName/location (searching on locationName alone doesn't seem to work, returns a 502), so I couldn't get a real proof of concept. . I regret this decision as when I re-read the challenge for the fifth or sixth time, it seems like it is a big part of the challenge.
 - No API discovery/gateway tool, instead, I just have the urls as environment variables or even worse.. in-code variables. Hope to fix.
 - No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
-- I punted (so far) on the location/searching aspect.. I regret this decision as when I re-read the challenge for the fifth or sixth time, it seems like it is a big part of the challenge; however, when playing with the API, I had difficulty getting results to come up given productName/location.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database isnt trivial so hope to do this as last part.
 - No frontend form validation
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
 - No integration testing. I would (and have set up elsewhere) cypress for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
 - Little scss methodology, mostly setting values empirically
-- I didn't fill in the "QTY" column in my data table. Googling it makes that sound like "quantity take off" which I'm assuming I'd get somewhere else.
+- My datatable looks a lot different than the one shown in the wireframes because my story tells something a little different.
 
 #### Things that I learned:
 
 - How to set up app as pure "production-ready-ish" microservices, separating client/backend.
-- Using functional components with hooks in React with Typescript, still a lot to learn there, exciting!
+- A ton using functional components with hooks in React with Typescript, still a lot to learn there, exciting! I think I can add React to my skillset now?
 - Setting up redux-observable with Typescript.
 - A lot about the existing Takeoffs API! Though have some confusion as alluded to above.
 - Another example: why doesn't a product have a storeId? Rather, it has a storeProductId...but there's no storeProduct API?
