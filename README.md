@@ -55,7 +55,7 @@ Create an application allowing the user to:
 - No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
-- No frontend form validation
+- Little form validation in both frontend and almost none in backend
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
 - No integration testing. I would (and have set up elsewhere) cypress for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
