@@ -29,4 +29,5 @@ class MaterialController:
         if(categoryName):
             queryParams['categoryName'] = categoryName
         responseJson = requests.get(url, queryParams).json()
-        return responseJson
+        productsKey = 'hydra:member'
+        return responseJson[productsKey]

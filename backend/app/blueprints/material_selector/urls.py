@@ -3,10 +3,11 @@ from flask_cors import cross_origin
 
 from material_selector import MaterialController
 
-from .helpers import CategoryJson
+from .helpers import CategoryJson, ProductJson
 
 def register(blueprint):
     """Register the routes for the material selector/root"""
+
     @blueprint.route('/categories')
     @cross_origin()
     def get_categories():
@@ -21,7 +22,7 @@ def register(blueprint):
             args = {}
         categories = CategoryJson.get_categories(**args)
         total = MaterialController().get_total()
-        # Trusting sort from API s o far
+        # Trusting sort from API so far
         return jsonify({'categories': categories, 'total': total})        
 
     @blueprint.route('/products')
@@ -35,6 +36,6 @@ def register(blueprint):
             }
         else:
             args = {}
-        products = MaterialController().get_products(args)
-        print("PRODUDCTS", products)
-        return jsonify(products)        
+        # Taking the first 10 for now
+        products = ProductJson.get_products(**args)[:10]
+        return jsonify(products)
