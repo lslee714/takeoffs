@@ -1,9 +1,16 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-import App from './App';
+import { Provider } from 'react-redux';
+import { render, getByDisplayValue } from '@testing-library/react';
 
-test('renders learn react link', (): any => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+import App from './App';
+import store from '../../store';
+
+test('renders project component which has text', (): any => {
+  const { getByText } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  const createProjectElement = getByText('Create a new project');
+  expect(createProjectElement).toBeVisible();
 });
