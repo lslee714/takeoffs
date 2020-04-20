@@ -18,9 +18,9 @@ export interface IMaterialSelectorState {
       [categoryId: number]: IMaterialProduct[];
     };
     byId: {
-      [id: number]: IMaterialProduct;
+      [id: string]: IMaterialProduct;
     };
-    sorted: number[];
+    sorted: string[];
   };
 }
 

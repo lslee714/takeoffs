@@ -13,7 +13,7 @@ const SelectorTableRow = (props: any) => {
 
   useEffect(() => {
     dispatch(MaterialSelectorActions.getProducts(category));
-  });
+  }, [category]);
 
   const materialCategory: IMaterialCategory = props.data;
   return <div>{materialCategory.name}</div>;

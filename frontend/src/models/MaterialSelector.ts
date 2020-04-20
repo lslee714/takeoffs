@@ -4,7 +4,7 @@ export interface IMaterialCategory {
 }
 
 export interface IMaterialProduct {
-  id: number;
+  id: string;
   name: string;
   storeUrl: string;
   imageUrl: string;
