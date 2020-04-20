@@ -81,6 +81,8 @@ To run locally with production builds:
  ./run.sh
 ```
 
+Then visit http://localhost
+
 ## Frontend
 
 ### Written in React with Typescript, using create-react-app with Typescript
