@@ -14,8 +14,15 @@ class ProductJson:
             'storeUrl': self.store_url,
             'imageUrl': self.image_url,
             'price': self.price,
-            'currency': self.currency
+            'currency': self.currency,
+            'unit': self.unit
         }
+
+    @classmethod
+    def get_products(cls, categoryName=''):
+        controller = MaterialController()
+        productResponse = controller.get_products(categoryName)
+        return [cls(p)() for p in productResponse]
 
     @property
     def id(self):
@@ -27,31 +34,35 @@ class ProductJson:
     @property
     def name(self):
         nameKey = 'productName'
-        return self.productRes[nameKey]
+        return self._get_by_key(nameKey)
 
     @property
     def store_url(self):
         storeUrlKey = 'storeUrl'
-        return self.productRes[storeUrlKey]
+        return self._get_by_key(storeUrlKey)
 
     @property
     def image_url(self):
         imageUrlKey = 'productImageUrl'
-        return self.productRes[imageUrlKey]
+        return self._get_by_key(imageUrlKey)
 
     @property
     def price(self):
         priceKey = 'price'
-        return self.productRes[priceKey]
+        return self._get_by_key(priceKey)
     
     @property
     def currency(self):
         currencyKey = 'currency'
-        return self.productRes[currencyKey]
+        return self._get_by_key(currencyKey)
 
-    @classmethod
-    def get_products(cls, categoryName=''):
-        controller = MaterialController()
-        productResponse = controller.get_products(categoryName)
-        return list(map(lambda p: cls(p)(), productResponse))
 
+    @property
+    def unit(self):
+        unitKey = 'productUnit'
+        return self._get_by_key(unitKey)
+
+    def _get_by_key(self, key):
+        """Return the value if it exists"""
+        # Learned not all products look the same... 
+        return self.productRes[key] if key in self.productRes else ''

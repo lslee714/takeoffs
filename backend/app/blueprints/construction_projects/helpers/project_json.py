@@ -32,4 +32,4 @@ class ProjectJson:
     def get_all_projects_as_json(cls, session):
         """Helper to pre hook this into db connector"""
         projects = ProjectController(session).get_projects()
-        return list(map(lambda p: ProjectJson(p)(), projects))
+        return [cls(p)() for p in projects]
