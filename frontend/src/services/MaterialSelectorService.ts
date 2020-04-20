@@ -1,12 +1,9 @@
 import { Observable } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import {
-  IMaterialCategory,
-  IMaterialProduct,
-} from '../models/MaterialSelector';
+import { MaterialSelector } from '../models';
 
 export interface IMaterialCategoriesResponse {
-  categories: IMaterialCategory[];
+  categories: MaterialSelector.IMaterialCategory[];
   total: number;
 }
 
@@ -25,9 +22,11 @@ export class MaterialSelectorService {
     return ajax.getJSON<IMaterialCategoriesResponse>(url);
   }
 
-  getProducts(category: IMaterialCategory): Observable<IMaterialProduct[]> {
+  getProducts(
+    category: MaterialSelector.IMaterialCategory
+  ): Observable<MaterialSelector.IMaterialProduct[]> {
     const url = `${this.apiBaseUrl}/products?category-name=${category.name}`;
-    return ajax.getJSON<IMaterialProduct[]>(url);
+    return ajax.getJSON<MaterialSelector.IMaterialProduct[]>(url);
   }
 }
 

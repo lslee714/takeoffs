@@ -3,13 +3,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { useDispatch } from 'react-redux';
 
-import { IMaterialProduct } from '../../../../models/MaterialSelector';
+import { MaterialSelector } from '../../../../models';
 
 import './CategoryProductItem.scss';
 import MaterialSelectorActions from '../../../../store/actions/material-selector';
 
-const CategoryProductItem = (props: { product: IMaterialProduct }) => {
-  const product: IMaterialProduct = props.product;
+const CategoryProductItem = (props: {
+  product: MaterialSelector.IMaterialProduct;
+}) => {
+  const product: MaterialSelector.IMaterialProduct = props.product;
   const dispatch: Dispatch<any> = useDispatch();
   return (
     <Row

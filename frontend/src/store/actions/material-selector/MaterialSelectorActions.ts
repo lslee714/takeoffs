@@ -1,8 +1,5 @@
 import { IMaterialCategoriesResponse } from '../../../services/MaterialSelectorService';
-import {
-  IMaterialProduct,
-  IMaterialCategory,
-} from '../../../models/MaterialSelector';
+import { MaterialSelector } from '../../../models';
 
 export enum MaterialSelectorActionTypes {
   GetCategories = 'Get Categories',
@@ -13,6 +10,7 @@ export enum MaterialSelectorActionTypes {
   ShowInCart = 'Show In Cart',
   UnshowInCart = 'Unshow In Cart',
   AddToCart = 'Add To Cart',
+  SaveCart = 'Save Cart',
 }
 
 export interface IGetCategoriesAction {
@@ -27,12 +25,15 @@ export interface ILoadCategoriesAction {
 
 export interface IGetProductsAction {
   type: MaterialSelectorActionTypes.GetProducts;
-  payload: { category: IMaterialCategory };
+  payload: { category: MaterialSelector.IMaterialCategory };
 }
 
 export interface ILoadProductsAction {
   type: MaterialSelectorActionTypes.LoadProducts;
-  payload: { category: IMaterialCategory; products: IMaterialProduct[] };
+  payload: {
+    category: MaterialSelector.IMaterialCategory;
+    products: MaterialSelector.IMaterialProduct[];
+  };
 }
 
 export interface IResetIsLoadingAction {
@@ -42,7 +43,7 @@ export interface IResetIsLoadingAction {
 export interface IShowInCartAction {
   type: MaterialSelectorActionTypes.ShowInCart;
   payload: {
-    product: IMaterialProduct;
+    product: MaterialSelector.IMaterialProduct;
   };
 }
 
@@ -58,6 +59,13 @@ export interface IUnshowInCartAction {
   type: MaterialSelectorActionTypes.UnshowInCart;
   payload: {
     productId: string;
+  };
+}
+
+export interface ISaveCart {
+  type: MaterialSelectorActionTypes.SaveCart;
+  payload: {
+    saveUrl: string;
   };
 }
 
@@ -83,7 +91,9 @@ export function loadCategories(
   };
 }
 
-export function getProducts(category: IMaterialCategory): IGetProductsAction {
+export function getProducts(
+  category: MaterialSelector.IMaterialCategory
+): IGetProductsAction {
   return {
     type: MaterialSelectorActionTypes.GetProducts,
     payload: { category },
@@ -91,8 +101,8 @@ export function getProducts(category: IMaterialCategory): IGetProductsAction {
 }
 
 export function loadProducts(
-  category: IMaterialCategory,
-  products: IMaterialProduct[]
+  category: MaterialSelector.IMaterialCategory,
+  products: MaterialSelector.IMaterialProduct[]
 ): ILoadProductsAction {
   return {
     type: MaterialSelectorActionTypes.LoadProducts,
@@ -106,7 +116,9 @@ export function resetIsLoading(): IResetIsLoadingAction {
   };
 }
 
-export function showInCart(product: IMaterialProduct): IShowInCartAction {
+export function showInCart(
+  product: MaterialSelector.IMaterialProduct
+): IShowInCartAction {
   return {
     type: MaterialSelectorActionTypes.ShowInCart,
     payload: {
@@ -135,6 +147,13 @@ export function unshowInCart(productId: string): IUnshowInCartAction {
   };
 }
 
+export function saveCart(saveUrl: string): ISaveCart {
+  return {
+    type: MaterialSelectorActionTypes.SaveCart,
+    payload: { saveUrl },
+  };
+}
+
 export type MaterialSelectorActions =
   | IGetCategoriesAction
   | ILoadCategoriesAction
@@ -143,4 +162,5 @@ export type MaterialSelectorActions =
   | ILoadProductsAction
   | IShowInCartAction
   | IAddToCartAction
-  | IUnshowInCartAction;
+  | IUnshowInCartAction
+  | ISaveCart;

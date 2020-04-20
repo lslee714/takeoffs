@@ -5,15 +5,15 @@ import FormControl from 'react-bootstrap/FormControl';
 import { MdRemoveCircle } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 
-import { IMaterialProduct } from '../../../models/MaterialSelector';
+import { MaterialSelector } from '../../../models';
 
 import './CartItem.scss';
 import MaterialSelectorActions from '../../../store/actions/material-selector';
 
-const CartItem = (props: { product: IMaterialProduct }) => {
+const CartItem = (props: { product: MaterialSelector.IMaterialProduct }) => {
   const [quantity, setQuantity] = useState(1);
   const dispatch: Dispatch<any> = useDispatch();
-  const product: IMaterialProduct = props.product;
+  const product: MaterialSelector.IMaterialProduct = props.product;
   return (
     <Card className="item">
       <Card.Title className="title">

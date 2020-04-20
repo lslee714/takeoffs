@@ -6,6 +6,7 @@ export enum ProjectActionTypes {
   ResetIsLoading = 'Projects Reset Is Loading',
   CreateProject = 'Create Project',
   DeleteProject = 'Delete Project',
+  SaveProject = 'Save Project',
 }
 
 export interface IGetProjectsAction {
@@ -29,6 +30,14 @@ export interface ICreateProjectAction {
 export interface IDeleteProjectAction {
   type: ProjectActionTypes.DeleteProject;
   payload: { id: number; link: string };
+}
+
+export interface ISaveProjectAction {
+  type: ProjectActionTypes.SaveProject;
+  payload: {
+    project: ConstructionProject.IConstructionProject;
+    cart: { [productId: string]: number };
+  };
 }
 
 export function getProjects(): IGetProjectsAction {

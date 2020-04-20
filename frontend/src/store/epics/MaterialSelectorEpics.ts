@@ -7,7 +7,7 @@ import MaterialSelectorActions from '../actions/material-selector';
 import MaterialSelectorService, {
   IMaterialCategoriesResponse,
 } from '../../services/MaterialSelectorService';
-import { IMaterialProduct } from '../../models/MaterialSelector';
+import { MaterialSelector } from '../../models';
 
 export const getCategoriesEpic: Epic<
   MaterialSelectorActions.MaterialSelectorActions,
@@ -46,7 +46,7 @@ export const getProductsEpic: Epic<
     ),
     switchMap((action: MaterialSelectorActions.IGetProductsAction) =>
       MaterialSelectorService.getProducts(action.payload.category).pipe(
-        mergeMap((res: IMaterialProduct[]) => {
+        mergeMap((res: MaterialSelector.IMaterialProduct[]) => {
           return of(
             MaterialSelectorActions.loadProducts(action.payload.category, res)
           );

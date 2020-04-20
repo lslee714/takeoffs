@@ -1,24 +1,21 @@
 import MaterialSelectorActions from '../actions/material-selector';
-import {
-  IMaterialCategory,
-  IMaterialProduct,
-} from '../../models/MaterialSelector';
+import { MaterialSelector } from '../../models';
 
 export interface IMaterialSelectorState {
   isLoading: boolean;
   categories: {
     byId: {
-      [id: number]: IMaterialCategory;
+      [id: number]: MaterialSelector.IMaterialCategory;
     };
     sorted: number[];
     total: number;
   };
   products: {
     byCategoryId: {
-      [categoryId: number]: IMaterialProduct[];
+      [categoryId: number]: MaterialSelector.IMaterialProduct[];
     };
     byId: {
-      [id: string]: IMaterialProduct;
+      [id: string]: MaterialSelector.IMaterialProduct;
     };
     sorted: string[];
   };
@@ -92,7 +89,7 @@ export const materialSelectorReducer = (
           },
         },
       };
-      products.forEach((product: IMaterialProduct) => {
+      products.forEach((product: MaterialSelector.IMaterialProduct) => {
         newState.products.byId[product.id] = product;
         newState.products.sorted.push(product.id);
       });
