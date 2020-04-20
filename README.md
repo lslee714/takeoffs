@@ -38,7 +38,7 @@ Create an application allowing the user to:
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
 - I punted (so far) on the location/searching aspect.. I regret this decision as when I re-read the challenge for the fifth or sixth time, it seems like it is a big part of the challenge; however, when playing with the API, I had difficulty getting results to come up given productName/location.
-- Using sqlite, hosting a full microserviced application in the cloud w/ a database also isnt trivial, wil revisit
+- Using sqlite, hosting a full microserviced application in the cloud w/ a database isnt trivial so hope to do this as last part.
 - No frontend form validation
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) so got a little time concerned over that too).
 - No integration testing. I would and have set up cypress (using fixtures) for this.
