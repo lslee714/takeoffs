@@ -1,0 +1,40 @@
+@import '../../../styles/variables.scss';
+
+.item {
+  height: 200px;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  justify-content: center;
+  grid-gap: 20px;
+  padding: $card-padding;
+  .title {
+    grid-column-start: 2;
+  }
+  .product-picture {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    height: 150px;
+    width: 150px;
+  }
+  .footer {
+    display: flex;
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    input {
+      float: right;
+      width: 75px;
+      margin-top: 3px;
+      margin-right: 50px;
+    }
+    .add-item {
+      width: 100px;
+    }
+
+    .total {
+      font-size: 1.25em;
+      margin-top: 5px;
+      margin-right: 35px;
+    }
+  }
+}

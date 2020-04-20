@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .cart {
   height: auto;
   min-height: 100%;
@@ -6,7 +8,7 @@
     background-color: #f1f2f4;
     height: 75px;
     .header {
-      padding: 20px 0 0 20px;
+      padding: $card-padding;
     }
   }
 }

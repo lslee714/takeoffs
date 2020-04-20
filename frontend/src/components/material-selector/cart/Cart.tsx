@@ -1,7 +1,7 @@
 import React from 'react';
-import ListGroup from 'react-bootstrap/ListGroup';
 import { useSelector } from 'react-redux';
 
+import CartItem from '../cart-item/CartItem';
 import { IMaterialProduct } from '../../../models/MaterialSelector';
 import { IRootState } from '../../../store/reducers';
 
@@ -22,13 +22,9 @@ const Cart = () => {
       <div className="header-container">
         <h3 className="header">Shopping Cart</h3>
       </div>
-      <ListGroup>
-        {itemsToShow.map((product: IMaterialProduct) => (
-          <ListGroup.Item key={product.id} className="product">
-            {product.name}
-          </ListGroup.Item>
-        ))}
-      </ListGroup>
+      {itemsToShow.map((product: IMaterialProduct) => (
+        <CartItem key={product.id} product={product} />
+      ))}
     </div>
   );
 };
