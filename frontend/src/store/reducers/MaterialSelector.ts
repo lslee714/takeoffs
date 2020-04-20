@@ -111,6 +111,15 @@ export const materialSelectorReducer = (
       }
       return newState;
 
+    case MaterialSelectorActions.MaterialSelectorActionTypes.UnshowInCart:
+      const productId = action.payload.productId;
+      newState = {
+        ...state,
+      };
+      const idx = newState.cart.shown.indexOf(productId);
+      newState.cart.shown.splice(idx, 1);
+      return newState;
+
     default:
       return state;
   }

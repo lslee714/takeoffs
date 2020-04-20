@@ -7,7 +7,7 @@ import './ProjectTabs.scss';
 
 const ProjectTabs = () => {
   return (
-    <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
+    <Tabs defaultActiveKey="marketPlace" id="uncontrolled-tab-example">
       <Tab eventKey="summary" title="Summary" disabled />
       <Tab eventKey="floorPlans" title="Floor Plans" disabled />
       <Tab

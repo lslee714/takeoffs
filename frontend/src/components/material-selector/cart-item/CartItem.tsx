@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, Dispatch } from 'react';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import FormControl from 'react-bootstrap/FormControl';
+import { MdRemoveCircle } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 
 import { IMaterialProduct } from '../../../models/MaterialSelector';
 
 import './CartItem.scss';
-import FormControl from 'react-bootstrap/FormControl';
+import MaterialSelectorActions from '../../../store/actions/material-selector';
 
 const CartItem = (props: { product: IMaterialProduct }) => {
   const [quantity, setQuantity] = useState(1);
+  const dispatch: Dispatch<any> = useDispatch();
   const product: IMaterialProduct = props.product;
   return (
     <Card className="item">
@@ -20,6 +24,12 @@ const CartItem = (props: { product: IMaterialProduct }) => {
         ) : (
           <div>{product.name}</div>
         )}
+        <MdRemoveCircle
+          className="remove"
+          onClick={(e) =>
+            dispatch(MaterialSelectorActions.unshowInCart(product.id))
+          }
+        />
       </Card.Title>
       {product.imageUrl ? (
         <Card.Img src={product.imageUrl} className="product-picture" />
