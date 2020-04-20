@@ -49,4 +49,8 @@ def register(blueprint):
     @cross_origin()
     def save_project_materials(projectId):
         """Create a project's materials (cart)"""
+        cart = request.get_json()
+        controller = ProjectController(session)
+        controller.set_project_cart(projectId, cart)
+        session.commit()
         return jsonify({})
