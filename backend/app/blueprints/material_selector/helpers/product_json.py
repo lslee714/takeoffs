@@ -1,6 +1,7 @@
 from material_selector import MaterialController
 
 
+# TODO unit test for this
 class ProductJson:
     def __init__(self, productRes):
         self.productRes = productRes
