@@ -55,7 +55,6 @@ Create an application allowing the user to:
 - No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
-- Using sqlite, hosting a full microserviced application in the cloud w/ a database isnt trivial so hope to do this as last part.
 - No frontend form validation
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
 - No integration testing. I would (and have set up elsewhere) cypress for this.
