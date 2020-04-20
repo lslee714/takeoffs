@@ -15,6 +15,7 @@ Create an application allowing the user to:
 - Sound architecture
 - React w/ Typescript UI
 - Flask backend
+- Relational Database, hopefully Postgres (punting until I have time to set it up in the cloud)
 
 #### Project retro notes:
 
@@ -30,6 +31,7 @@ Create an application allowing the user to:
 - I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Application layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
 - There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
+- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend.
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
@@ -40,15 +42,16 @@ Create an application allowing the user to:
 - I punted (so far) on the location/searching aspect.. I regret this decision as when I re-read the challenge for the fifth or sixth time, it seems like it is a big part of the challenge; however, when playing with the API, I had difficulty getting results to come up given productName/location.
 - Using sqlite, hosting a full microserviced application in the cloud w/ a database isnt trivial so hope to do this as last part.
 - No frontend form validation
-- Testing lacking, especially in the frontend (new framework (jest vs jasmine) so got a little time concerned over that too).
-- No integration testing. I would and have set up cypress (using fixtures) for this.
+- Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
+- No integration testing. I would (and have set up elsewhere) cypress for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
 - Little scss methodology, mostly setting values empirically
+- I didn't fill in the "QTY" column in my data table. Googling it makes that sound like "quantity take off" which I'm assuming I'd get somewhere else.
 
 #### Things that I learned:
 
-- How to set up app as pure "producution-ready-ish" microservices, separating client/backend.
-- Using functional components with hooks in React with typescript, still a lot to learn there, exciting!
+- How to set up app as pure "production-ready-ish" microservices, separating client/backend.
+- Using functional components with hooks in React with Typescript, still a lot to learn there, exciting!
 - A lot about the existing Takeoffs API, though still some confusion as alluded to above. Another example: why doesn't a product have a storeId? Rather, it has a storeProductId...but there's no storeProduct API?
 - Also, the get products API doesnt return the same object every time :curious: e.g. productUnit isn't always present.
 - Some calls of the get products API w/ a categoryName query param blows up: e.g. Doors, BuildingBoards, I should handle it better than I am (just assuming it's empty), but ...time (for now!)
