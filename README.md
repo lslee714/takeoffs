@@ -2,6 +2,12 @@
 
 ## Project Details
 
+### Abstract
+
+This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice.
+
+The database can be any relational database, though the current run.sh file (deploys production locally) uses an in memory (to the container) sqlite database currently. Work is being done to host it on GCP. Below is available information detailing the state of the project.
+
 #### Project Epic:
 
 Create an application allowing the user to:
@@ -22,7 +28,7 @@ Create an application allowing the user to:
 - Currently, the project allows the user to:
 
   - Create a project or delete an existing one
-  - With a project, view and select products from various categories in the material selector which includes backend pagination
+  - Within project, view and select products from various categories in the material selector which includes backend pagination.
   - Within the cart preview, adjust the quantity and add to the project or remove it from preview
   - On revisiting the project view, view the number of items in the project
 
@@ -46,7 +52,7 @@ Create an application allowing the user to:
 - I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Flask framework/API layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
 - There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
-- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend.
+- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend. The biggest/not production appropriate problems are the hardcoded API urls for the frontend and backend (to hook into Takeoff's material API). Deployment will/should find better solutions for this.
 
 #### Shortcuts I took so far (mostly due to time constraints)
 
@@ -55,8 +61,7 @@ Create an application allowing the user to:
 - No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
-- Using sqlite, hosting a full microserviced application in the cloud w/ a database isnt trivial so hope to do this as last part.
-- No frontend form validation
+- Little form validation in both frontend and almost none in backend
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
 - No integration testing. I would (and have set up elsewhere) cypress for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
@@ -80,6 +85,8 @@ To run locally with production builds:
 ```
  ./run.sh
 ```
+
+Then visit http://localhost
 
 ## Frontend
 
