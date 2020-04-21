@@ -9,8 +9,7 @@ export interface IMaterialCategoriesResponse {
 
 export class MaterialSelectorService {
   // TOdo move this out of app
-  apiBaseUrl =
-    'https://takeoffs-demo-yww2j5nyqq-uw.a.run.app/material-selector/';
+  apiBaseUrl = `${process.env.API_URL}/material-selector`;
 
   getCategories(payload?: {
     page: number;
