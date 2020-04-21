@@ -28,8 +28,8 @@ ENV FLASK_APP run.py
 ENV BASE_UPLOAD_PATH /home/docker/temp
 ENV MATERIAL_API_URL https://materials-api.takeoffs.io
 
-RUN chown -R docker:docker ./
+EXPOSE 8000
 USER docker
 
-EXPOSE 8080
+RUN chown -R docker:docker ./
 ENTRYPOINT ["sh", "boot.sh"]
