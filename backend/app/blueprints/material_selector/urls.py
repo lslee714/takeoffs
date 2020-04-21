@@ -1,5 +1,4 @@
 from flask import render_template, request, jsonify
-from flask_cors import cross_origin
 
 from material_selector import MaterialController
 
@@ -9,7 +8,6 @@ def register(blueprint):
     """Register the routes for the material selector/root"""
 
     @blueprint.route('/categories')
-    @cross_origin()
     def get_categories():
         """Return the categories given pagination criteria"""
         queryParams = request.args
@@ -26,7 +24,6 @@ def register(blueprint):
         return jsonify({'categories': categories, 'total': total})        
 
     @blueprint.route('/products')
-    @cross_origin()
     def get_products():
         """Return the products given the search query param"""
         queryParams = request.args

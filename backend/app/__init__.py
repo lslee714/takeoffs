@@ -14,8 +14,7 @@ def create_app(config):
     
     app = Flask(__name__)
     app.config.from_object(config)
-    CORS(app, resources={r"/*": {"origins": "*"}})
-    app.config['CORS_HEADERS'] = 'Content-Type'
+    CORS(app)
     sqlAlchemyUriEnvVar = 'SQLALCHEMY_DATABASE_URI'
     databaseUri = os.environ.get(sqlAlchemyUriEnvVar)
     additionalArgs = {'connect_args': {'check_same_thread': False} } if databaseUri.startswith('sqlite') else {}    
