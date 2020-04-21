@@ -21,7 +21,8 @@ def create_app(config):
     Session = sessionmaker(bind=engine)
     session = Session()
     register_blueprints(app)
-    CORS(app)
+    CORS(app, resources={r"/*": {"origins": "*"}})
+    app.config['CORS_HEADERS'] = 'Content-Type'
     return app
 
 def register_blueprints(app):
