@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask
 from flask_cors import CORS
 from sqlalchemy import create_engine
@@ -12,7 +14,10 @@ def create_app(config):
     
     app = Flask(__name__)
     app.config.from_object(config)
-    engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], connect_args={'check_same_thread': False})
+    sqlAlchemyUriEnvVar = 'SQLALCHEMY_DATABASE_URI'
+    databaseUri = os.environ.get(sqlAlchemyUriEnvVar)
+    additionalArgs = {'connect_args': {'check_same_thread': False} } if databaseUri.startswith('sqlite') else {}    
+    engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'], **additionalArgs)
     Session = sessionmaker(bind=engine)
     session = Session()
     register_blueprints(app)

@@ -1,12 +1,10 @@
-# This is the docker file for the GCP App Engine only, use dev.Dockerfile for local configuration
 FROM python:3.6-alpine
 
 RUN adduser -D docker
 RUN apk update
 RUN apk add make automake gcc g++ subversion python3-dev
 
-WORKDIR /home/docker
-COPY requirements.txt requirements.txt
+COPY backend/requirements.txt requirements.txt
 RUN python -m venv venv
 RUN \
     apk add --no-cache postgresql-libs && \
@@ -14,20 +12,22 @@ RUN \
     venv/bin/pip install -r requirements.txt --no-cache-dir && \
     apk --purge del .build-deps
 
-COPY construction_projects construction_projects
-COPY material_selector material_selector
-COPY models models
-COPY app app
-COPY migrations migrations
-COPY configs configs
-COPY run.py alembic.ini wsgi.py boot.sh ./
+WORKDIR /home/docker
+
+COPY backend/construction_projects construction_projects
+COPY backend/material_selector material_selector
+COPY backend/models models
+COPY backend/app app
+COPY backend/migrations migrations
+COPY backend/configs configs
+COPY backend/run.py backend/alembic.ini backend/wsgi.py backend/boot.sh ./
 
 RUN chmod +x boot.sh
 
 ENV FLASK_APP run.py
 ENV BASE_UPLOAD_PATH /home/docker/temp
 ENV MATERIAL_API_URL https://materials-api.takeoffs.io
-ENV PRODUCTION true
+ENV PRODUCTION false
 
 RUN chown -R docker:docker ./
 USER docker

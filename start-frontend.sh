@@ -5,7 +5,7 @@ npm run build
 
 cd ..
 
-docker build -f frontend/Dockerfile -t takeoffs-frontend:latest .
+docker build -f frontend/dev.Dockerfile -t takeoffs-frontend:latest .
 if [ $? -eq 0 ] 
 then
     echo "Frontend production build built!"
