@@ -1,5 +1,6 @@
 from flask import url_for
 
+from app import app
 from construction_projects import ProjectController
 
 from ...material_selector.helpers import ProductJson
@@ -33,10 +34,11 @@ class ProjectJson:
     
     def create_links(self):
         """Return link map for the object"""
+        additionalArgs = {'_scheme': 'https' } if app.config['ENV'] == 'production' else {}
         return {
-            'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True),
-            'save': url_for('construction_projects.save_project', projectId=self.project.id, _external=True),
-            'saveCart': url_for('construction_projects.save_project_materials', projectId=self.project.id, _external=True) 
+            'delete': url_for('construction_projects.delete_project', projectId=self.project.id, _external=True, **additionalArgs),
+            'save': url_for('construction_projects.save_project', projectId=self.project.id, _external=True, **additionalArgs),
+            'saveCart': url_for('construction_projects.save_project_materials', projectId=self.project.id, _external=True, **additionalArgs) 
         }
 
     def get_materials(self):
