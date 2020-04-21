@@ -7,10 +7,9 @@ from .project import Project
 
 class Material(Base):
     """Represents the material table"""
-    #Purposefully commented out for sqlite development
-    # __table_args__ = {
-    #     'schema': 'construction_projects'
-    # }
+    __table_args__ = {
+        'schema': 'construction_projects'
+    }
     __tablename__ = 'material'
     id = Column(Integer, primary_key=True)
     api_id = Column(String, unique=True)
