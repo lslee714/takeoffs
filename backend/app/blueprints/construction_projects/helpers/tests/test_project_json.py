@@ -41,6 +41,7 @@ class test_call(TestCase):
                 'delete': url_for('construction_projects.delete_project', projectId=id, _external=True),
                 'save': url_for('construction_projects.save_project', projectId=id, _external=True),
                 'saveCart': url_for('construction_projects.save_project_materials', projectId=id, _external=True) 
-            }
+            },
+            'cart': []
         }
         self.assertEqual(projectJsonData, expectedResult)
