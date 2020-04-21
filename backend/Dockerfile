@@ -27,7 +27,6 @@ RUN chmod +x boot.sh
 ENV FLASK_APP run.py
 ENV BASE_UPLOAD_PATH /home/docker/temp
 ENV MATERIAL_API_URL https://materials-api.takeoffs.io
-ENV PRODUCTION true
 
 RUN chown -R docker:docker ./
 USER docker
