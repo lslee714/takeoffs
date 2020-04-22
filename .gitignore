@@ -27,3 +27,10 @@ backend/venv
 #Dev tools
 frontend/.prettierrc
 .vscode
+
+#Cloud run deployment tools
+frontend/build-frontend.sh
+frontend/deploy-frontend.sh
+
+backend/build-backend.sh
+backend/deploy-backend.sh
