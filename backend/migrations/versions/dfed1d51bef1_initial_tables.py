@@ -52,7 +52,7 @@ def upgrade():
         sa.Column('filepath', sa.String(), nullable=True),
         sa.Column('source_filename', sa.String(), nullable=False),
         sa.Column('ts_uploaded', sa.DateTime(), server_default=sa.text('CURRENT_TIMESTAMP'), nullable=False),
-        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath), nullable=False),
+        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath, ondelete='CASCADE'), nullable=False),
         sa.PrimaryKeyConstraint('id'),
         sa.UniqueConstraint('filepath'),
         **ADDITIONAL_PROJECT_ARGS
@@ -61,7 +61,7 @@ def upgrade():
     op.create_table('material',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('api_id', sa.String(), nullable=True),
-        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath), nullable=False),
+        sa.Column('id_project', sa.Integer(), sa.ForeignKey(projectIdSqlPath, ondelete='CASCADE'), nullable=False),
         sa.Column('quantity', sa.Integer(), nullable=False),
         sa.Column('ts_created', sa.DateTime(), nullable=False),
         sa.PrimaryKeyConstraint('id'),

@@ -13,7 +13,7 @@ class Material(Base):
     __tablename__ = 'material'
     id = Column(Integer, primary_key=True)
     api_id = Column(String, unique=True)
-    id_project = Column(Integer, ForeignKey(Project.id), nullable=False)
+    id_project = Column(Integer, ForeignKey(Project.id, ondelete='CASCADE'), nullable=False)
     quantity = Column(Integer, nullable=False)
     ts_created = Column(DateTime, nullable=False, default=func.now())
     
