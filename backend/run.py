@@ -10,7 +10,7 @@ if __name__ == '__main__':
     argParser.add_argument('--config', dest='config', nargs='?', choices=('debug', 'live'), default='debug',
                            help='The type of configuration to run the service in')
 
-    argParser.add_argument('--host', dest='host', nargs='?', default='localhost',
+    argParser.add_argument('--host', dest='host', nargs='?', default='0.0.0.0',
                            help='The host IP to run the service in')
 
     argParser.add_argument('--port', dest='port', nargs='?', default='8000',

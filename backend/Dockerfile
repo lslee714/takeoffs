@@ -27,9 +27,9 @@ RUN chmod +x boot.sh
 ENV FLASK_APP run.py
 ENV BASE_UPLOAD_PATH /home/docker/temp
 ENV MATERIAL_API_URL https://materials-api.takeoffs.io
+RUN chown -R docker:docker ./
 
-EXPOSE 8000
 USER docker
 
-RUN chown -R docker:docker ./
+EXPOSE 8000
 ENTRYPOINT ["sh", "boot.sh"]
