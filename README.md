@@ -4,9 +4,11 @@
 
 ### Abstract
 
-This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice.
+This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice. The database is assumed to be a PostgreSQL db. The deployment uses a Google Cloud SQL Postgres instance. More information below.
 
-The database can be any relational database, though the current run.sh file (deploys production locally) uses an in memory (to the container) sqlite database currently. Work is being done to host it on GCP. Below is available information detailing the state of the project.
+### Live Demo:
+
+- A production build is running <a href="https://takeoffs-demo-frontend-yww2j5nyqq-uw.a.run.app/">HERE</a>
 
 #### Project Epic:
 
@@ -21,7 +23,7 @@ Create an application allowing the user to:
 - Sound architecture
 - React w/ Typescript UI
 - Flask backend
-- Relational Database. Sqlite still used in local build, but cloud sql w/ postgres is now up! Trying to get this going all hooked in up there..
+- Postgres Database
 
 #### Project retro notes:
 
@@ -52,16 +54,16 @@ Create an application allowing the user to:
 - I didn't utilize Flask_SQLAlchemy as that marries the ORM layer to the Flask framework/API layer, which would make the app a little more rigid.
 - Added sass as css preprocessor, regular css was getting too clunky
 - There's some repetitive "flow" involved in the front end for both projects and material selector; could likely be abstracted out and even maybe into a utility-like scaffold
-- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend. The biggest/not production appropriate problems are the hardcoded API urls for the frontend and backend (to hook into Takeoff's material API). Deployment will/should find better solutions for this.
+- All in all, I'm pretty happy with the application so far. Other than the shortcuts listed below, I believe the code is "solid" and the architecture/codebase would scale well to growth, both in complexity and number of members. If the team got large (10+ people), then it's probably worth re-visiting the mono-repo strategy, luckily I've separated the code into at least the front/backends as well as having blueprints in the backend. A big /not production appropriate problem is the hardcoded backend API url in the frontend. Webpack makes it difficult to inject environment variables for the runtime to extract from the process.env object. Having a real orchestration tool could fix this.
 
-#### Shortcuts I took so far (mostly due to time constraints)
+#### Additional Shortcuts I took so far (mostly due to time constraints)
 
 - I punted (so far) on the location/searching aspect because when playing with the API, I had difficulty getting any results to return given productName/location (searching on locationName alone doesn't seem to work, returns a 502), so I couldn't get a real proof of concept. . I regret this decision as when I re-read the challenge for the fifth or sixth time, it seems like it is a big part of the challenge.
-- No API discovery/gateway tool, instead, I just have the urls as environment variables or even worse.. in-code variables. Hope to fix.
+- No API discovery/gateway tool, instead, I just have the urls as environment variables. Using a tool like kubernetes would help with this a lot.
 - No "user" / authentication. I've admittedly only done this professionally so punted on it for now.
 - "Caveman" orchestration (my own script rather than something like docker compose); I want to set up kubernetes with it, ambitiously!
 - The application is very happy pathed, but I think I did a good job of at least silencing/hiding (i.e. still useable) the errors.
-- Little form validation in both frontend and almost none in backend
+- Little data validation in both frontend and almost none in backend
 - Testing lacking, especially in the frontend (new framework (jest vs jasmine) for me, so got a little time concerned over that too).
 - No integration testing. I would (and have set up elsewhere) cypress for this.
 - Only have one (so far loading "icon") and that's just a "loading" text, during server side pagination
@@ -70,6 +72,7 @@ Create an application allowing the user to:
 
 #### Things that I learned:
 
+- How to setup multiple Google Cloud Run instances talking to each other and also a Cloud SQL database!
 - How to set up app as pure "production-ready-ish" microservices, separating client/backend.
 - A ton using functional components with hooks in React with Typescript, still a lot to learn there, exciting! I think I can add React to my skillset now?
 - Setting up redux-observable with Typescript.
@@ -81,6 +84,11 @@ Create an application allowing the user to:
 ## TL;DR
 
 To run locally with production builds:
+
+- To run without postgres, go to backend/models and comment out all the \_\_table_args\_\_ class variables in the sqlalchemy models
+- To run with postgres, change backend/Dockerfile's SQLALCHEMY_DATABASE_URI env variable to the correct URI
+
+Then:
 
 ```
  ./run.sh
@@ -124,12 +132,18 @@ start-frontend.sh
 
 ```
 $ ./setup.sh
-//Create and adjust an environment file (i.e. env.sh) in backend directory (/some/path/to/takeoffs/backend)
-//Recommend using env.sh.template as a boilerplate
-//Example of database uri: "[sql db type]:///path/to/db", e.g. "sqlite:////$(pwd)/test.db"
+
+# Create and adjust an environment file (i.e. env.sh) in backend directory (/some/path/to/takeoffs/backend)
+# Recommend using env.sh.template as a boilerplate
+# Example of database uri: "[sql db type]:///path/to/db"
+# e.g. "sqlite:////$(pwd)/test.db" or "postgresql://<user>:<pass>@localhost/<databaseName>
+# Note if you use sqllite (no longer recommended), you must comment out the __table_args__ class variables in all of the models
+
 $ source env.sh (or file from step #2)
 $ alembic upgrade heads
 ```
+
+More info on SQLAlchemy database URI <a href="https://docs.sqlalchemy.org/en/13/core/engines.html">HERE</a>
 
 #### For tests
 
@@ -149,12 +163,11 @@ $ python -m unittest
 
 ```
 $ source env.sh #or whatever env file from above
+$ alembic upgrade heads
 $ python run.py
 ```
 
-\*optional
-
-#### For production, from root project directory
+#### For production mode
 
 ```
 ./start-backend.sh
