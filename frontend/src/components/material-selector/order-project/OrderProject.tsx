@@ -1,4 +1,4 @@
-import React, { Dispatch } from 'react';
+import React, { Dispatch, useState } from 'react';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -16,6 +16,7 @@ import './OrderProject.scss';
 const OrderProject = (props: {
   project: ConstructionProject.IConstructionProject;
 }) => {
+  const [purchaseClicked, setPurchaseClicked] = useState(false);
   const project = props.project;
   const dispatch: Dispatch<any> = useDispatch();
   let cart: {
@@ -44,7 +45,13 @@ const OrderProject = (props: {
       <Row>
         <Col className="total" sm={6}>
           <strong>Project Total: </strong> $ {projectTotal}
-          {isComplete ? <FaCheck className="save-complete"></FaCheck> : ''}
+          {purchaseClicked ? (
+            <div className="coming-soon">Not Implemented (yet!)</div>
+          ) : isComplete ? (
+            <FaCheck className="save-complete"></FaCheck>
+          ) : (
+            ''
+          )}
         </Col>
         <Col>
           <Badge className="float-right item-count" pill variant="secondary">
@@ -55,8 +62,10 @@ const OrderProject = (props: {
           <Button
             variant="primary"
             className="save"
+            disabled={!itemsInCart}
             onClick={() => {
               if (project.links?.saveCart) {
+                setPurchaseClicked(false);
                 dispatch(
                   ConstructionProjectActions.saveProjectCart({
                     saveCartLink: project.links.saveCart,
@@ -68,7 +77,11 @@ const OrderProject = (props: {
           >
             Save Project
           </Button>
-          <Button variant="success" disabled={itemsInCart === 0}>
+          <Button
+            variant="success"
+            disabled={!itemsInCart}
+            onClick={() => setPurchaseClicked(true)}
+          >
             Purchase Division
           </Button>
         </Col>
