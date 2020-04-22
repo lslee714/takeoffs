@@ -7,6 +7,7 @@ export enum ProjectActionTypes {
   CreateProject = 'Create Project',
   DeleteProject = 'Delete Project',
   SaveProjectCart = 'Save Project Cart',
+  CompleteSaveIsLoading = 'Complete Project Is Saving',
 }
 
 export interface IGetProjectsAction {
@@ -38,6 +39,10 @@ export interface ISaveProjectCartAction {
     saveCartLink: string;
     cart: { [productId: string]: number };
   };
+}
+
+export interface ICompleteSaveIsLoading {
+  type: ProjectActionTypes.CompleteSaveIsLoading;
 }
 
 export function getProjects(): IGetProjectsAction {
@@ -90,10 +95,17 @@ export function saveProjectCart(payload: {
   };
 }
 
+export function completeSaveIsLoading(): ICompleteSaveIsLoading {
+  return {
+    type: ProjectActionTypes.CompleteSaveIsLoading,
+  };
+}
+
 export type ProjectActions =
   | IGetProjectsAction
   | ILoadProjectsAction
   | IResetIsLoadingAction
   | ICreateProjectAction
   | IDeleteProjectAction
-  | ISaveProjectCartAction;
+  | ISaveProjectCartAction
+  | ICompleteSaveIsLoading;

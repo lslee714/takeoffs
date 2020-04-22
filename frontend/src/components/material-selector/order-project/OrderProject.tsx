@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import { FaCheck } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { ConstructionProject } from '../../../models';
@@ -34,11 +35,16 @@ const OrderProject = (props: {
     return Math.round(total * 100) / 100;
   });
 
+  const isComplete = useSelector((state: IRootState) => {
+    return state.projects.saveIsComplete;
+  });
+
   return (
     <Container className="order-project float-right">
       <Row>
         <Col className="total" sm={6}>
           <strong>Project Total: </strong> $ {projectTotal}
+          {isComplete ? <FaCheck className="save-complete"></FaCheck> : ''}
         </Col>
         <Col>
           <Badge className="float-right item-count" pill variant="secondary">
@@ -50,7 +56,6 @@ const OrderProject = (props: {
             variant="primary"
             className="save"
             onClick={() => {
-              console.log('Clicking');
               if (project.links?.saveCart) {
                 dispatch(
                   ConstructionProjectActions.saveProjectCart({

@@ -95,10 +95,10 @@ export const saveProjectEpic: Epic<
         action.payload.saveCartLink,
         action.payload.cart
       ).pipe(
-        ignoreElements(),
+        map(() => ConstructionProjectActions.completeSaveIsLoading()),
         catchError((err) => {
           console.log('err', err);
-          return of(ConstructionProjectActions.resetIsLoading());
+          return of(ConstructionProjectActions.completeSaveIsLoading());
         })
       )
     )

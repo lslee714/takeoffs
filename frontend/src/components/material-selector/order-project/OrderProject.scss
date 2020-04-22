@@ -1,7 +1,7 @@
 .order-project {
   position: relative;
   top: 25px;
-  right: 50px;
+  right: 100px;
   .total {
     font-size: 2em;
   }
@@ -13,5 +13,10 @@
   }
   .save {
     margin-right: 5px;
+  }
+  .save-complete {
+    color: green;
+    font-size: 1.25em;
+    margin-left: 30px;
   }
 }

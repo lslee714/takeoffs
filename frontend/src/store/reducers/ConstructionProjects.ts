@@ -7,12 +7,14 @@ export interface IConstructionProjectsState {
     [id: number]: IConstructionProject;
   };
   sorted: number[];
+  saveIsComplete: boolean;
 }
 
 export const initialState: IConstructionProjectsState = {
   isLoading: false,
   byId: {},
   sorted: [],
+  saveIsComplete: false,
 };
 
 export const projectsReducer = (
@@ -55,6 +57,17 @@ export const projectsReducer = (
       });
       return newState;
 
+    case ConstructionProjectActions.ProjectActionTypes.SaveProjectCart:
+      return {
+        ...state,
+        saveIsComplete: false,
+      };
+
+    case ConstructionProjectActions.ProjectActionTypes.CompleteSaveIsLoading:
+      return {
+        ...state,
+        saveIsComplete: true,
+      };
     default:
       return state;
   }
