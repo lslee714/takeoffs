@@ -4,7 +4,9 @@ import { IConstructionProject } from '../models/ConstructionProject';
 
 export class ConstructionProjectsService {
   // TOdo move this out of app
-  apiBaseUrl = `${process.env.API_URL}/construction-projects`;
+  apiBaseUrl = `${
+    process.env.API_URL || 'https://takeoffs-backend-yww2j5nyqq-uc.a.run.app'
+  }/construction-projects`;
 
   getProjects(): Observable<IConstructionProject[]> {
     return ajax.getJSON<IConstructionProject[]>(this.apiBaseUrl);
