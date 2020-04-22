@@ -77,7 +77,7 @@ const OrderProject = (props: {
               Save Project
             </Button>
             <Button
-              className="action"
+              className="action purchase"
               variant="success"
               disabled={!itemsInCart}
               onClick={() => setPurchaseClicked(true)}
