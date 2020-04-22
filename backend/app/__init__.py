@@ -22,6 +22,7 @@ def create_app(config):
     Session = sessionmaker(bind=engine)
     session = Session()
     register_blueprints(app)
+    app.url_map.strict_slashes = False
     return app
 
 def register_blueprints(app):

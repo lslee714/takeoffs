@@ -9,13 +9,13 @@ from .helpers import ProjectJson
 def register(blueprint):
     """Register the routes for the blueprint"""
 
-    @blueprint.route('/')
+    @blueprint.route('', methods=['GET'])
     def get_projects():
         """Returns the existing projects, sorted by TS created"""
         projectJsons = ProjectJson.get_all_projects_as_json(session)
         return jsonify(projectJsons)
 
-    @blueprint.route('/', methods=['POST'])
+    @blueprint.route('', methods=['POST'])
     def create_project():
         """Create a project and return its ID"""
         projectData = request.get_json();
