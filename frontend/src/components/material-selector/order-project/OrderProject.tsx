@@ -57,10 +57,10 @@ const OrderProject = (props: {
               ''
             )}
           </Col>
-          <Col sm={3} className="actions ml-auto">
+          <Col sm={3} className="ml-auto">
             <Button
               variant="primary"
-              className="save"
+              className="save action"
               disabled={!itemsInCart}
               onClick={() => {
                 if (project.links?.saveCart) {
@@ -77,6 +77,7 @@ const OrderProject = (props: {
               Save Project
             </Button>
             <Button
+              className="action"
               variant="success"
               disabled={!itemsInCart}
               onClick={() => setPurchaseClicked(true)}
