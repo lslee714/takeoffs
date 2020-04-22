@@ -41,51 +41,51 @@ const OrderProject = (props: {
   });
 
   return (
-    <Container className="order-project float-right">
-      <Row>
-        <Col className="total" sm={6}>
-          <strong>Project Total: </strong> $ {projectTotal}
-          {purchaseClicked ? (
-            <div className="coming-soon">Not Implemented (yet!)</div>
-          ) : isComplete ? (
-            <FaCheck className="save-complete"></FaCheck>
-          ) : (
-            ''
-          )}
-        </Col>
-        <Col>
-          <Badge className="float-right item-count" pill variant="secondary">
-            {itemsInCart} item(s)
-          </Badge>
-        </Col>
-        <Col>
-          <Button
-            variant="primary"
-            className="save"
-            disabled={!itemsInCart}
-            onClick={() => {
-              if (project.links?.saveCart) {
-                setPurchaseClicked(false);
-                dispatch(
-                  ConstructionProjectActions.saveProjectCart({
-                    saveCartLink: project.links.saveCart,
-                    cart,
-                  })
-                );
-              }
-            }}
-          >
-            Save Project
-          </Button>
-          <Button
-            variant="success"
-            disabled={!itemsInCart}
-            onClick={() => setPurchaseClicked(true)}
-          >
-            Purchase Division
-          </Button>
-        </Col>
-      </Row>
+    <Container className="order-project text-center">
+      <Col sm={9}>
+        <Row>
+          <Col className="total" sm={9}>
+            <Badge className="item-count" pill variant="secondary">
+              {itemsInCart} item(s)
+            </Badge>
+            <strong>Project Total: </strong> $ {projectTotal}
+            {purchaseClicked ? (
+              <div className="coming-soon">Not Implemented (yet!)</div>
+            ) : isComplete ? (
+              <FaCheck className="save-complete"></FaCheck>
+            ) : (
+              ''
+            )}
+          </Col>
+          <Col className="actions">
+            <Button
+              variant="primary"
+              className="save"
+              disabled={!itemsInCart}
+              onClick={() => {
+                if (project.links?.saveCart) {
+                  setPurchaseClicked(false);
+                  dispatch(
+                    ConstructionProjectActions.saveProjectCart({
+                      saveCartLink: project.links.saveCart,
+                      cart,
+                    })
+                  );
+                }
+              }}
+            >
+              Save Project
+            </Button>
+            <Button
+              variant="success"
+              disabled={!itemsInCart}
+              onClick={() => setPurchaseClicked(true)}
+            >
+              Purchase Division
+            </Button>
+          </Col>
+        </Row>
+      </Col>
     </Container>
   );
 };

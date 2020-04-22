@@ -1,15 +1,17 @@
 .order-project {
+  min-width: 100%;
   position: relative;
   top: 25px;
-  right: 100px;
   .total {
-    font-size: 2em;
+    font-size: 1.5em;
+    text-align: left;
+    margin-left: 50px;
+  }
+  .actions {
+    display: flex;
   }
   .item-count {
-    font-size: 1.5em;
-  }
-  .col:not(.total .item-count) {
-    margin-top: 5px;
+    margin-right: 10px;
   }
   .save {
     margin-right: 5px;
@@ -21,6 +23,8 @@
   }
   .coming-soon {
     color: red;
+    margin-left: 30px;
     font-size: 0.75em;
+    display: inline;
   }
 }
