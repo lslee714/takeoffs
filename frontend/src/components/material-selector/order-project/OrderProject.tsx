@@ -44,7 +44,7 @@ const OrderProject = (props: {
     <Container className="order-project text-center">
       <Col sm={9}>
         <Row>
-          <Col className="total" sm={9}>
+          <Col className="total" sm={8}>
             <Badge className="item-count" pill variant="secondary">
               {itemsInCart} item(s)
             </Badge>
@@ -52,12 +52,12 @@ const OrderProject = (props: {
             {purchaseClicked ? (
               <div className="coming-soon">Not Implemented (yet!)</div>
             ) : isComplete ? (
-              <FaCheck className="save-complete"></FaCheck>
+              <FaCheck className="save-complete" />
             ) : (
               ''
             )}
           </Col>
-          <Col className="actions">
+          <Col sm={3} className="actions ml-auto">
             <Button
               variant="primary"
               className="save"
