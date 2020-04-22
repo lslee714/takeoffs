@@ -28,6 +28,9 @@ ENV FLASK_APP run.py
 ENV BASE_UPLOAD_PATH /home/docker/temp
 ENV MATERIAL_API_URL https://materials-api.takeoffs.io
 ENV PRODUCTION false
+# This Dockerfile assumes sqlite database by default, please override SQLALCHEMY_DATABASE_URI with your postgres URI
+# If you wish to use sqlite, please comment out the __table_args__ class variables in the Sqlalchemy models
+ENV SQLALCHEMY_DATABASE_URI sqlite://///home/docker/test.db
 
 RUN chown -R docker:docker ./
 USER docker
