@@ -8,7 +8,7 @@ This is a project with two microservices, one for the front end and the other fo
 
 ### Live Demo:
 
-- A production build is running <a href="https://takeoffs-demo-frontend-yww2j5nyqq-uw.a.run.app/">HERE</a>
+- A production build is running <a href="https://frontend.lukes-takeoffs-demo.com/">HERE</a>
 
 #### Project Epic:
 
