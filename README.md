@@ -6,7 +6,7 @@
 
 This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice. The database is assumed to be a PostgreSQL db. The deployment uses a Google Cloud SQL Postgres instance. More information below.
 
-### Live Demo: ** DATABASE DELETED TO PREVENT RECURRING CHARGES, PLEASE INQUIRE IF YOU WISH TO VIEW **
+### Live Demo: ** Database and Domain deleted as of 04-18-21, this is simply a codebase now **
 
 ~~- A production build is running <a href="https://frontend.lukes-takeoffs-demo.com/">HERE</a>~~
 
