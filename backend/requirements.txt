@@ -16,7 +16,7 @@ itsdangerous==1.1.0
 Jinja2==2.11.3
 kombu==4.4.0
 lazy-object-proxy==1.4.3
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.1.1
 mccabe==0.6.1
 more-itertools==6.0.0
