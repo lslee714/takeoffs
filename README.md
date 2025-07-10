@@ -5,7 +5,9 @@ Full disclosure: it was a takehome for a prior position but I've kept it here si
 
 ### Abstract
 
-This is a project with two microservices, one for the front end and the other for the backend. The frontend is written in Typescript with React and the microservice uses nginx to serve the index.html file. The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice. The database is assumed to be a PostgreSQL db. The deployment uses a Google Cloud SQL Postgres instance. More information below.
+This is a monorepo with two distinct apps, one for the front end and the other for the backend. The frontend is written in Typescript with React and uses nginx to serve the bundled app. 
+
+The backend is written in Python with Flask + SQLAlchemy + Alembic with Gunicorn running it in the microservice. The database is assumed to be a PostgreSQL db. The deployment uses a Google Cloud SQL Postgres instance. More information below.
 
 ### Live Demo: Database and Domain deleted as of 04-18-21, this is simply a codebase now for inspiration
 
@@ -16,7 +18,8 @@ This is a project with two microservices, one for the front end and the other fo
 Create an application allowing the user to:
 
 - Create a construction project and add details like name, description, location and pictures
-- Within a construction project, allow the user to select materials that utilizes the Takeoffs materials API
+- Within a construction project, allow the user to select materials that utilizes the a hardcoded list of materials
+  - The hardcoded list used to be from a now defunct API
 - Material selection should be feature rich, and it should include things like updating quantities, add/remove from cart
 
 #### Project Technical Requirements:
